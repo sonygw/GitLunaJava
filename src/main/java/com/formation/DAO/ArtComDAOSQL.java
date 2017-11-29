@@ -31,7 +31,7 @@ public class ArtComDAOSQL implements ArtComDAO {
 
 		try {
 			state = conn.createStatement();
-			result = state.executeQuery("Select * from ArtCom where idCommande =" + idCommande);
+			result = state.executeQuery("Select * from artCom where idCommande =" + idCommande);
 
 			while (result.next()) {
 				resultat = new ArtCom(result.getInt("idArtCom"), result.getInt("idCommande"),
@@ -53,7 +53,7 @@ public class ArtComDAOSQL implements ArtComDAO {
 		boolean result = false;
 		try {
 			state = conn.createStatement();
-			state.executeUpdate("Delete from ArtCom where idArtCom =" + obj.getIdArtCom());
+			state.executeUpdate("Delete from artCom where idArtCom =" + obj.getIdArtCom());
 			result = true;
 
 		} catch (SQLException e) {
@@ -71,7 +71,7 @@ public class ArtComDAOSQL implements ArtComDAO {
 
 		try {
 			state = conn.createStatement();
-			state.executeUpdate("Update ArtCom SET idCommande = " + obj.getIdArtCom() + ", idArticle = "
+			state.executeUpdate("Update artCom SET idCommande = " + obj.getIdArtCom() + ", idArticle = "
 					+ obj.getIdArticle() + " where idArtCom = " + idArtCom);
 			result = true;
 
@@ -89,7 +89,7 @@ public class ArtComDAOSQL implements ArtComDAO {
 
 		try {
 			state = conn.createStatement();
-			state.executeUpdate("insert into ArtCom values (null, " + obj.getIdCommande() + "," + obj.getIdArticle()
+			state.executeUpdate("insert into artCom values (null, " + obj.getIdCommande() + "," + obj.getIdArticle()
 					+ "," + obj.getquantite() + ")");
 			result = true;
 
