@@ -8,5 +8,5 @@ package com.formation.model;
  *
  */
 public class Auteur {
-// bonjour les gens lol sfthsfh
+// bonjour les gens lol sfthsfhsss
 }
