@@ -4,11 +4,11 @@ public class Article {
 
 	
 	private int idArticle;
-	private String Nom;
-	private String Description;
-	private double PrixHT;
-	private int Quantite;
-	private String Categorie;
+	private String nom;
+	private String description;
+	private double prixHT;
+	private int quantite;
+	private String categorie;
 	
 	public Article() {
 		// TODO Auto-generated constructor stub
@@ -17,11 +17,11 @@ public class Article {
 	public Article(int idArticle, String nom, String description, double prixHT, int quantite, String categorie) {
 		super();
 		this.idArticle = idArticle;
-		Nom = nom;
-		Description = description;
-		PrixHT = prixHT;
-		Quantite = quantite;
-		Categorie = categorie;
+		this.nom = nom;
+		this.description = description;
+		this.prixHT = prixHT;
+		this.quantite = quantite;
+		this.categorie = categorie;
 	}
 
 	public int getIdArticle() {
@@ -33,44 +33,46 @@ public class Article {
 	}
 
 	public String getNom() {
-		return Nom;
+		return nom;
 	}
 
 	public void setNom(String nom) {
-		Nom = nom;
+		this.nom = nom;
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 
 	public double getPrixHT() {
-		return PrixHT;
+		return prixHT;
 	}
 
 	public void setPrixHT(double prixHT) {
-		PrixHT = prixHT;
+		this.prixHT = prixHT;
 	}
 
 	public int getQuantite() {
-		return Quantite;
+		return quantite;
 	}
 
 	public void setQuantite(int quantite) {
-		Quantite = quantite;
+		this.quantite = quantite;
 	}
 
 	public String getCategorie() {
-		return Categorie;
+		return categorie;
 	}
 
 	public void setCategorie(String categorie) {
-		Categorie = categorie;
+		this.categorie = categorie;
 	}
+
+	
 	
 	
 }

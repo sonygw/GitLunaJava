@@ -5,7 +5,7 @@ public class ArtCom {
 	private int idArtCom;
 	private int idCommande;
 	private int idArticle;
-	private int Quantite;
+	private int quantite;
 	
 	public ArtCom() {
 		// TODO Auto-generated constructor stub
@@ -16,7 +16,7 @@ public class ArtCom {
 		this.idArtCom = idArtCom;
 		this.idCommande = idCommande;
 		this.idArticle = idArticle;
-		Quantite = quantite;
+		this.quantite = quantite;
 	}
 
 	public int getIdArtCom() {
@@ -43,12 +43,12 @@ public class ArtCom {
 		this.idArticle = idArticle;
 	}
 
-	public int getQuantite() {
-		return Quantite;
+	public int getquantite() {
+		return quantite;
 	}
 
-	public void setQuantite(int quantite) {
-		Quantite = quantite;
+	public void setquantite(int quantite) {
+		quantite = quantite;
 	}
 	
 	
