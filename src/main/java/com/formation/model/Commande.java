@@ -8,19 +8,29 @@ public class Commande {
 	private double prixHT;
 	private String adresse;
 	private int idClient;
+	private String reglement;
 	private java.sql.Date date;
 	
 	public Commande() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Commande(int idCommande, double prixHT, String adresse, int idClient, Date date) {
+	public Commande(int idCommande, double prixHT, String adresse, int idClient, Date date, String reglement) {
 		super();
 		this.idCommande = idCommande;
 		this.prixHT = prixHT;
 		this.adresse = adresse;
 		this.idClient = idClient;
 		this.date = date;
+		this.reglement = reglement;
+	}
+
+	public String getReglement() {
+		return reglement;
+	}
+
+	public void setReglement(String reglement) {
+		this.reglement = reglement;
 	}
 
 	public int getIdCommande() {
