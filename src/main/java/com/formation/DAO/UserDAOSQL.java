@@ -2,39 +2,115 @@ package com.formation.DAO;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import com.formation.model.User;
 
 public class UserDAOSQL implements UserDAO {
+	
+	private Connection conn;
+	private Statement state;
 
-	@Override
-	public User SelectUser(Connection con, int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ResultSet SelectAllUsers(Connection con) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean UpdateUser(Connection con, int id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean CreateUser(Connection con) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean DeleteUser(Connection con, int id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
+public UserDAOSQL() {
+	// TODO Auto-generated constructor stub
 }
+
+
+	public UserDAOSQL(Connection conn) {
+	super();
+	this.conn = conn;
+}
+
+
+	@Override
+	public ArrayList<User> SelectAllUsers() {
+		
+		ArrayList<User> users = new ArrayList<User>(); 
+		User user = null;
+		
+		ResultSet result = null;
+		try {
+			state = conn.createStatement();
+			result = state.executeQuery("SELECT * FROM user");
+			
+			while(result.next()) {
+				user = new User(result.getInt("idUser"), result.getString("nom"), result.getString("login"), result.getString("mdp"), result.getBoolean("admin"));
+				users.add(user);
+			}
+		
+			} catch(SQLException e) {
+				e.printStackTrace();
+		}
+		return users;
+	}
+
+	@Override
+	public boolean UpdateUser(User user, int id) {
+		
+		boolean result = false;
+
+
+		try {
+			state = conn.createStatement();
+			state.executeUpdate("UPDATE user SET nom ='"+ user.getNom() + "', login='" + user.getLogin() + "', mdp= '"
+					+ user.getMotDePasse() + "', admin= " + user.isAdmin() + " WHERE idUser=" + id);
+			result = true;
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		return result;
+	}
+
+	@Override
+	public boolean CreateUser(User user) {
+
+		boolean result = false;
+
+
+		try {
+			state = conn.createStatement();
+			state.executeUpdate("INSERT user SET nom ='"+ user.getNom() + "', login='" + user.getLogin() + "', mdp= '"
+					+ user.getMotDePasse() + "', admin= " + user.isAdmin());
+			result = true;
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		return result;
+	}
+
+	@Override
+	public boolean DeleteUser(int id) {
+		
+		
+		boolean result = false;
+	
+		try {
+			state = conn.createStatement();
+			state.executeUpdate("DELETE FROM user WHERE idUser=" + id);
+			result = true;
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		return result;
+	}
+
+	@Override
+	public User SelectUser(int id) {
+		
+		ResultSet result = null;
+		User user = null;
+		
+		try {
+			state = conn.createStatement();
+			result = state.executeQuery("SELECT * FROM user WHERE idUser=" + id);
+			user = new User(result.getInt("idUser"), result.getString("nom"), result.getString("login"), result.getString("mdp"), result.getBoolean("admin"));
+
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+			return user;
+		}
+	}
+	
+	
