@@ -3,10 +3,10 @@ package com.formation.model;
 public class User {
 	
 	private int idUser;
-	private String Nom;
-	private String Login;
-	private String MotDePasse;
-	private boolean Admin;
+	private String nom;
+	private String login;
+	private String motDePasse;
+	private boolean admin;
 	
 	public User() {
 		// TODO Auto-generated constructor stub
@@ -15,10 +15,10 @@ public class User {
 	public User(int idUser, String nom, String login, String motDePasse, boolean admin) {
 		super();
 		this.idUser = idUser;
-		Nom = nom;
-		Login = login;
-		MotDePasse = motDePasse;
-		Admin = admin;
+		this.nom = nom;
+		this.login = login;
+		this.motDePasse = motDePasse;
+		this.admin = admin;
 	}
 
 	public int getIdUser() {
@@ -30,37 +30,36 @@ public class User {
 	}
 
 	public String getNom() {
-		return Nom;
+		return nom;
 	}
 
 	public void setNom(String nom) {
-		Nom = nom;
+		this.nom = nom;
 	}
 
 	public String getLogin() {
-		return Login;
+		return login;
 	}
 
 	public void setLogin(String login) {
-		Login = login;
+		this.login = login;
 	}
 
 	public String getMotDePasse() {
-		return MotDePasse;
+		return motDePasse;
 	}
 
 	public void setMotDePasse(String motDePasse) {
-		MotDePasse = motDePasse;
+		this.motDePasse = motDePasse;
 	}
 
 	public boolean isAdmin() {
-		return Admin;
+		return admin;
 	}
 
 	public void setAdmin(boolean admin) {
-		Admin = admin;
+		this.admin = admin;
 	}
-	
-	
+
 
 }
