@@ -1,6 +1,6 @@
 package com.formation.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Commande {
 
@@ -9,13 +9,13 @@ public class Commande {
 	private String adresse;
 	private int idClient;
 	private String reglement;
-	private java.sql.Date date;
+	private String date;
 	
 	public Commande() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Commande(int idCommande, double prixHT, String adresse, int idClient, Date date, String reglement) {
+	public Commande(int idCommande, double prixHT, String adresse, int idClient, String date, String reglement) {
 		super();
 		this.idCommande = idCommande;
 		this.prixHT = prixHT;
@@ -65,11 +65,11 @@ public class Commande {
 		this.idClient = idClient;
 	}
 
-	public java.sql.Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(java.sql.Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

@@ -70,8 +70,8 @@ public UserDAOSQL() {
 
 		try {
 			Statement state = conn.createStatement();
-			state.executeUpdate("INSERT INTO user values (null, "+ user.getNom() + "," + user.getLogin() + ","
-					+ user.getMotDePasse() + "," + user.isAdmin());
+			state.executeUpdate("INSERT INTO user values (null, '"+ user.getNom() + "','" + user.getLogin() + "','"
+					+ user.getMotDePasse() + "'," + user.isAdmin());
 			result = true;
 			} catch(SQLException e) {
 				e.printStackTrace();

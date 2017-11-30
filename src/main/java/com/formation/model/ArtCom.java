@@ -43,12 +43,12 @@ public class ArtCom {
 		this.idArticle = idArticle;
 	}
 
-	public int getquantite() {
+	public int getQuantite() {
 		return quantite;
 	}
 
-	public void setquantite(int quantite) {
-		quantite = quantite;
+	public void setQuantite(int quantite) {
+		this.quantite = quantite;
 	}
 	
 	

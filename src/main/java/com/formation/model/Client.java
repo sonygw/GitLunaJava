@@ -11,7 +11,7 @@ public class Client {
 	private boolean carteFidelite;
 	private String numeroTelephone;
 	private String remarques;
-	private java.sql.Date date;
+	private String date;
 	
 	
 	
@@ -22,7 +22,7 @@ public class Client {
 
 
 	public Client(int idClient, String nom, String email, String adresse, boolean carteFidelite, String numeroTelephone,
-			String remarques, Date date) {
+			String remarques, String date) {
 		super();
 		this.idClient = idClient;
 		this.nom = nom;
@@ -120,13 +120,13 @@ public class Client {
 
 
 
-	public java.sql.Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
 
 
-	public void setDate(java.sql.Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	

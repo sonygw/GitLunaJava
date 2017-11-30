@@ -42,7 +42,7 @@ public class ClientDAOSQL implements ClientDAO {
 			result.next();
 			resultat = new Client(result.getInt("idClient"), result.getString("nom"), result.getString("mail"),
 					result.getString("adresse"), result.getBoolean("carteFidel"), result.getString("remarques"),
-					result.getString("telephone"), result.getDate("dateCrea"));
+					result.getString("telephone"), result.getString("dateCrea"));
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -66,7 +66,7 @@ public class ClientDAOSQL implements ClientDAO {
 			while (result.next()) {
 				resultat = new Client(result.getInt("idClient"), result.getString("nom"), result.getString("mail"),
 						result.getString("adresse"), result.getBoolean("carteFidel"), result.getString("remarques"),
-						result.getString("telephone"), result.getDate("dateCrea"));
+						result.getString("telephone"), result.getString("dateCrea"));
 				clients.add(resultat);
 
 			}
@@ -100,10 +100,10 @@ public class ClientDAOSQL implements ClientDAO {
 
 		try {
 			state = conn.createStatement();
-			state.executeUpdate("Update client SET nom = " + obj.getNom() + ", mail = " + obj.getEmail()
-					+ ", adresse = " + obj.getAdresse() + ", carteFidel = " + obj.isCarteFidelite() + ", remarques = "
-					+ obj.getRemarques() + ", telephone = " + obj.getNumeroTelephone() + ", dateCrea = " + obj.getDate()
-					+ " where idClient = " + id);
+			state.executeUpdate("Update client SET nom = '" + obj.getNom() + "', mail = '" + obj.getEmail()
+					+ "', adresse = '" + obj.getAdresse() + "', carteFidel = " + obj.isCarteFidelite() + ", remarques = '"
+					+ obj.getRemarques() + "', telephone = '" + obj.getNumeroTelephone() + "', dateCrea = '" + obj.getDate()
+					+ "' where idClient = " + id +";");
 			result = true;
 
 		} catch (SQLException e) {
@@ -120,9 +120,9 @@ public class ClientDAOSQL implements ClientDAO {
 
 		try {
 			state = conn.createStatement();
-			state.executeUpdate("insert into client values (null, " + obj.getNom() + "," + obj.getEmail() + ","
-					+ obj.getAdresse() + "," + obj.isCarteFidelite() + "," + obj.getRemarques() + ","
-					+ obj.getNumeroTelephone() + "," + obj.getDate());
+			state.executeUpdate("insert into client values (null, '" + obj.getNom() + "','" + obj.getEmail() + "','"
+					+ obj.getAdresse() + "'," + obj.isCarteFidelite() + ",'" + obj.getRemarques() + "','"
+					+ obj.getNumeroTelephone() + "','" + obj.getDate() + "');");
 
 			result = true;
 

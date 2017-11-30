@@ -72,7 +72,7 @@ public class ArtComDAOSQL implements ArtComDAO {
 		try {
 			state = conn.createStatement();
 			state.executeUpdate("Update artCom SET idCommande = " + obj.getIdArtCom() + ", idArticle = "
-					+ obj.getIdArticle() + " where idArtCom = " + idArtCom);
+					+ obj.getIdArticle() +"," + obj.getQuantite() + " where idArtCom = " + idArtCom);
 			result = true;
 
 		} catch (SQLException e) {
@@ -90,7 +90,7 @@ public class ArtComDAOSQL implements ArtComDAO {
 		try {
 			state = conn.createStatement();
 			state.executeUpdate("insert into artCom values (null, " + obj.getIdCommande() + "," + obj.getIdArticle()
-					+ "," + obj.getquantite() + ")");
+					+ "," + obj.getQuantite() + ")");
 			result = true;
 
 		} catch (SQLException e) {
