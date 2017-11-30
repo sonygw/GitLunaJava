@@ -10,7 +10,7 @@ import com.formation.model.User;
 public class UserDAOSQL implements UserDAO {
 	
 	private Connection conn;
-	private Statement state;
+
 
 public UserDAOSQL() {
 	// TODO Auto-generated constructor stub
@@ -31,7 +31,7 @@ public UserDAOSQL() {
 		
 		ResultSet result = null;
 		try {
-			state = conn.createStatement();
+			Statement state = conn.createStatement();
 			result = state.executeQuery("SELECT * FROM user");
 			
 			while(result.next()) {
@@ -52,7 +52,7 @@ public UserDAOSQL() {
 
 
 		try {
-			state = conn.createStatement();
+			Statement state = conn.createStatement();
 			state.executeUpdate("UPDATE user SET nom ='"+ user.getNom() + "', login='" + user.getLogin() + "', mdp= '"
 					+ user.getMotDePasse() + "', admin= " + user.isAdmin() + " WHERE idUser=" + id);
 			result = true;
@@ -69,7 +69,7 @@ public UserDAOSQL() {
 
 
 		try {
-			state = conn.createStatement();
+			Statement state = conn.createStatement();
 			state.executeUpdate("INSERT INTO user values (null, "+ user.getNom() + "," + user.getLogin() + ","
 					+ user.getMotDePasse() + "," + user.isAdmin());
 			result = true;
@@ -86,7 +86,7 @@ public UserDAOSQL() {
 		boolean result = false;
 	
 		try {
-			state = conn.createStatement();
+			Statement state = conn.createStatement();
 			state.executeUpdate("DELETE FROM user WHERE idUser=" + id);
 			result = true;
 			} catch(SQLException e) {
@@ -98,12 +98,13 @@ public UserDAOSQL() {
 	@Override
 	public User SelectUser(int id) {
 		
-		ResultSet result = null;
+		ResultSet result;
 		User user = null;
 		
 		try {
-			state = conn.createStatement();
+			Statement state = conn.createStatement();
 			result = state.executeQuery("SELECT * FROM user WHERE idUser=" + id);
+			result.next();
 			user = new User(result.getInt("idUser"), result.getString("nom"), result.getString("login"), result.getString("mdp"), result.getBoolean("admin"));
 
 			} catch(SQLException e) {

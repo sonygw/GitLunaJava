@@ -7,12 +7,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import com.formation.model.Commande;
 
-
 public class CommandeDAOSQL implements CommandeDAO {
 
 	private Connection conn;
 	private Statement state;
-	
+
 	public CommandeDAOSQL() {
 		// TODO Auto-generated constructor stub
 	}
@@ -24,92 +23,102 @@ public class CommandeDAOSQL implements CommandeDAO {
 
 	@Override
 	public ArrayList<Commande> SelectAllCommandes() {
-		
-		ArrayList<Commande> commandes = new ArrayList<Commande>(); 
+
+		ArrayList<Commande> commandes = new ArrayList<Commande>();
 		Commande commande = null;
-		
+
 		ResultSet result = null;
 		try {
 			state = conn.createStatement();
 			result = state.executeQuery("SELECT * FROM commande");
-			
-			while(result.next()) {
-				commande = new Commande(result.getInt("idCommande"), result.getDouble("prixHT"), result.getString("adresse"), 
-						result.getInt("idClient"), result.getDate("date"), result.getString("reglement"));
+
+			while (result.next()) {
+				commande = new Commande(result.getInt("idCommande"), result.getDouble("prixHT"),
+						result.getString("adresse"), result.getInt("idClient"), result.getDate("date"),
+						result.getString("reglement"));
 				commandes.add(commande);
 			}
-		
-			} catch(SQLException e) {
-				e.printStackTrace();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return commandes;
 	}
 
 	@Override
-	public Commande SelectClientCommandes(int idclient) {
+	public ArrayList<Commande> SelectClientCommandes(int idclient) {
 		ResultSet result = null;
 		Commande commande = null;
-		
+		ArrayList<Commande> resultats =  new ArrayList<Commande>();
 		try {
 			state = conn.createStatement();
 			result = state.executeQuery("SELECT * FROM commande WHERE idClient=" + idclient);
-			commande = new Commande(result.getInt("idCommande"), result.getDouble("prixHT"), result.getString("adresse"), 
-					result.getInt("idClient"), result.getDate("date"), result.getString("reglement"));
-
-			} catch(SQLException e) {
-				e.printStackTrace();
+			while (result.next()) {
+				commande = new Commande(result.getInt("idCommande"), result.getDouble("prixHT"),
+						result.getString("adresse"), result.getInt("idClient"), result.getDate("date"),
+						result.getString("reglement"));
+				resultats.add(commande);
 			}
-			return commande;
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-	
+		return resultats;
+	}
 
 	@Override
 	public Commande SelectCommande(int id) {
 		ResultSet result = null;
 		Commande commande = null;
-		
+
 		try {
 			state = conn.createStatement();
 			result = state.executeQuery("SELECT * FROM commande WHERE idCommande=" + id);
-			commande = new Commande(result.getInt("idCommande"), result.getDouble("prixHT"), result.getString("adresse"), 
-					result.getInt("idClient"), result.getDate("date"), result.getString("reglement"));
+			result.next();
+			commande = new Commande(result.getInt("idCommande"), result.getDouble("prixHT"),
+					result.getString("adresse"), result.getInt("idClient"), result.getDate("date"),
+					result.getString("reglement"));
 
-			} catch(SQLException e) {
-				e.printStackTrace();
-			}
-			return commande;
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+		return commande;
+	}
 
 	@Override
-	public Commande SelectCommandesArticles(int id) {
+	public ArrayList<Commande> SelectCommandesArticles(int id) {
 		ResultSet result = null;
 		Commande commande = null;
-		
+		ArrayList<Commande> resultats = new ArrayList<Commande>();
+
 		try {
 			state = conn.createStatement();
-			result = state.executeQuery("SELECT * FROM commande c, artcom a WHERE c.idCommande=a.idCommande AND a.idArticle=" + id);
-			commande = new Commande(result.getInt("idCommande"), result.getDouble("prixHT"), result.getString("adresse"), 
-					result.getInt("idClient"), result.getDate("date"), result.getString("reglement"));
-
-			} catch(SQLException e) {
-				e.printStackTrace();
+			result = state.executeQuery(
+					"SELECT * FROM commande c, artcom a WHERE c.idCommande=a.idCommande AND a.idArticle=" + id);
+			while (result.next()) {
+				commande = new Commande(result.getInt("idCommande"), result.getDouble("prixHT"),
+						result.getString("adresse"), result.getInt("idClient"), result.getDate("date"),
+						result.getString("reglement"));
+				resultats.add(commande);
 			}
-			return commande;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return resultats;
 	}
 
 	@Override
 	public boolean CreateCommande(Commande commande) {
 		boolean result = false;
 
-
 		try {
 			state = conn.createStatement();
-			state.executeUpdate("INSERT INTO commande values (null," + commande.getPrixHT() + "," + commande.getAdresse() + "," +
-			commande.getIdClient() + "," + commande.getDate() + "," + commande.getReglement());
+			state.executeUpdate(
+					"INSERT INTO commande values (null," + commande.getPrixHT() + "," + commande.getAdresse() + ","
+							+ commande.getIdClient() + "," + commande.getDate() + "," + commande.getReglement());
 			result = true;
-			} catch(SQLException e) {
-				e.printStackTrace();
-			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return result;
 	}
 
@@ -117,31 +126,30 @@ public class CommandeDAOSQL implements CommandeDAO {
 	public boolean UpdateCommande(Commande commande, int id) {
 		boolean result = false;
 
-
 		try {
 			state = conn.createStatement();
-			state.executeUpdate("UPDATE commande SET prixHT ='"+ commande.getPrixHT() + "', adresse='" + commande.getAdresse() + "', idClient= '"
-					+ commande.getIdClient() + "', date= " + commande.getDate() + ", reglement= " + commande.getReglement() + " WHERE idCommande=" + id);
+			state.executeUpdate("UPDATE commande SET prixHT ='" + commande.getPrixHT() + "', adresse='"
+					+ commande.getAdresse() + "', idClient= '" + commande.getIdClient() + "', date= "
+					+ commande.getDate() + ", reglement= " + commande.getReglement() + " WHERE idCommande=" + id);
 			result = true;
-			} catch(SQLException e) {
-				e.printStackTrace();
-			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return result;
 	}
 
 	@Override
 	public boolean DeleteCommande(int id) {
 		boolean result = false;
-		
+
 		try {
 			state = conn.createStatement();
 			state.executeUpdate("DELETE FROM commande WHERE idCommande=" + id);
 			result = true;
-			} catch(SQLException e) {
-				e.printStackTrace();
-			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return result;
 	}
-	
-	
+
 }

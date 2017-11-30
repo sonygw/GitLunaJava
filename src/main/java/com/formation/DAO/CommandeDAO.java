@@ -7,8 +7,8 @@ import com.formation.model.Commande;
 public interface CommandeDAO {
 
 	public ArrayList<Commande> SelectAllCommandes();
-	public Commande SelectClientCommandes(int idclient);
-	public Commande SelectCommandesArticles(int id);
+	public ArrayList<Commande> SelectClientCommandes(int idclient);
+	public ArrayList<Commande> SelectCommandesArticles(int id);
 	public Commande SelectCommande(int id);
 	public boolean CreateCommande(Commande commande);
 	public boolean UpdateCommande(Commande commande, int id);

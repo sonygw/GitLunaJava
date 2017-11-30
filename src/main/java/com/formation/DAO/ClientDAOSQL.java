@@ -39,7 +39,7 @@ public class ClientDAOSQL implements ClientDAO {
 		try {
 			state = conn.createStatement();
 			result = state.executeQuery("Select * from client where idClient = " + id);
-
+			result.next();
 			resultat = new Client(result.getInt("idClient"), result.getString("nom"), result.getString("mail"),
 					result.getString("adresse"), result.getBoolean("carteFidel"), result.getString("remarques"),
 					result.getString("telephone"), result.getDate("dateCrea"));

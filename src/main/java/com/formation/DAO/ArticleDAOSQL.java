@@ -7,7 +7,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.formation.model.Article;
-import com.formation.model.Client;
 
 public class ArticleDAOSQL implements ArticleDAO {
 
@@ -60,7 +59,7 @@ public class ArticleDAOSQL implements ArticleDAO {
 		try {
 			state = conn.createStatement();
 			result = state.executeQuery("Select * from article where idArticle = " + id);
-
+			result.next();
 			article = new Article(result.getInt("idArticle"), result.getString("nom"), result.getString("description"),
 					result.getDouble("prixHT"), result.getInt("quantite"), result.getString("categorie"));
 
