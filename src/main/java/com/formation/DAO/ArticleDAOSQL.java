@@ -72,11 +72,11 @@ public class ArticleDAOSQL implements ArticleDAO {
 	}
 
 	@Override
-	public boolean DeleteArticle(Article obj) {
+	public boolean DeleteArticle(int id) {
 		boolean result = false;
 		try {
 			state = conn.createStatement();
-			state.executeUpdate("Delete from article where idArticle =" + obj.getIdArticle());
+			state.executeUpdate("Delete from article where idArticle =" + id);
 			result = true;
 
 		} catch (SQLException e) {
@@ -93,9 +93,11 @@ public class ArticleDAOSQL implements ArticleDAO {
 
 		try {
 			state = conn.createStatement();
-			state.executeUpdate("Update article SET nom = " + obj.getNom() + ", description = " + obj.getDescription()
-					+ ", prixHT = " + obj.getPrixHT() + ", quantite = " + obj.getQuantite() + ", categorie = "
-					+ obj.getCategorie() + " where idClient = " + id);
+			
+			String str = "Update article SET nom = '" + obj.getNom() + "', description = '" + obj.getDescription()
+					+ "', prixHT = " + obj.getPrixHT() + ", quantite = " + obj.getQuantite() + ", categorie = '"
+					+ obj.getCategorie() + "' where idArticle = " + id;
+			state.executeUpdate(str);
 			result = true;
 
 		} catch (SQLException e) {
@@ -112,10 +114,10 @@ public class ArticleDAOSQL implements ArticleDAO {
 
 		try {
 			state = conn.createStatement();
-			state.executeUpdate("Insert into article Values (null, " + obj.getNom() + "," + obj.getDescription()
-					+ "," + obj.getPrixHT() + "," + obj.getQuantite() + ","
-					+ obj.getCategorie());
-			result = true;
+			state.executeUpdate("INSERT INTO article VALUES (null, '" +  obj.getNom() + "','" + obj.getDescription()
+		+ "'," + obj.getPrixHT() + "," + obj.getQuantite() + ",'"
+		+ obj.getCategorie()+"')");
+			result=true;
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

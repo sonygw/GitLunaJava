@@ -9,6 +9,7 @@ public class Article {
 	private double prixHT;
 	private int quantite;
 	private String categorie;
+	private boolean visible = true;
 	
 	public Article() {
 		// TODO Auto-generated constructor stub
@@ -22,6 +23,14 @@ public class Article {
 		this.prixHT = prixHT;
 		this.quantite = quantite;
 		this.categorie = categorie;
+	}
+
+	public boolean isVisible() {
+		return visible;
+	}
+
+	public void setVisible(boolean visible) {
+		this.visible = visible;
 	}
 
 	public int getIdArticle() {

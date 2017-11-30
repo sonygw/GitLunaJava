@@ -9,7 +9,7 @@ public interface ArticleDAO {
 	
 	public ArrayList<Article> SelectAllArticles();
 	public Article SelectArticleById(int id);
-	public boolean DeleteArticle(Article obj);
+	public boolean DeleteArticle(int id);
 	public boolean UpdateArticle(Article obj, int id);
 	public boolean CreateArticle(Article obj);
 	
