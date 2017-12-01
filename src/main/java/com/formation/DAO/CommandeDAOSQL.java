@@ -33,7 +33,7 @@ public class CommandeDAOSQL implements CommandeDAO {
 			result = state.executeQuery("SELECT * FROM commande");
 
 			while (result.next()) {
-				commande = new Commande(result.getInt("idCommande"), result.getDouble("prixHT"),
+				commande = new Commande(result.getInt("idCommande"), result.getString("ref"), result.getDouble("prixHT"),
 						result.getString("adresse"), result.getInt("idClient"), result.getString("date"),
 						result.getString("reglement"));
 				commandes.add(commande);
@@ -54,7 +54,7 @@ public class CommandeDAOSQL implements CommandeDAO {
 			state = conn.createStatement();
 			result = state.executeQuery("SELECT * FROM commande WHERE idClient=" + idclient);
 			while (result.next()) {
-				commande = new Commande(result.getInt("idCommande"), result.getDouble("prixHT"),
+				commande = new Commande(result.getInt("idCommande"), result.getString("ref"), result.getDouble("prixHT"),
 						result.getString("adresse"), result.getInt("idClient"), result.getString("date"),
 						result.getString("reglement"));
 				resultats.add(commande);
@@ -74,7 +74,7 @@ public class CommandeDAOSQL implements CommandeDAO {
 			state = conn.createStatement();
 			result = state.executeQuery("SELECT * FROM commande WHERE idCommande=" + id);
 			result.next();
-			commande = new Commande(result.getInt("idCommande"), result.getDouble("prixHT"),
+			commande = new Commande(result.getInt("idCommande"), result.getString("ref"), result.getDouble("prixHT"),
 					result.getString("adresse"), result.getInt("idClient"), result.getString("date"),
 					result.getString("reglement"));
 
@@ -95,7 +95,7 @@ public class CommandeDAOSQL implements CommandeDAO {
 			result = state.executeQuery(
 					"SELECT * FROM commande c, artcom a WHERE c.idCommande=a.idCommande AND a.idArticle=" + id);
 			while (result.next()) {
-				commande = new Commande(result.getInt("idCommande"), result.getDouble("prixHT"),
+				commande = new Commande(result.getInt("idCommande"), result.getString("ref"), result.getDouble("prixHT"),
 						result.getString("adresse"), result.getInt("idClient"), result.getString("date"),
 						result.getString("reglement"));
 				resultats.add(commande);
@@ -112,7 +112,7 @@ public class CommandeDAOSQL implements CommandeDAO {
 
 		try {
 			state = conn.createStatement();
-			String req = "INSERT INTO commande values (null," + commande.getPrixHT() + ",'" + commande.getAdresse() + "',"
+			String req = "INSERT INTO commande values (null,'" + commande.getRef() + "',"+ commande.getPrixHT() + ",'" + commande.getAdresse() + "',"
 					+ commande.getIdClient() + ",'" + commande.getDate() + "','" + commande.getReglement() + "');";
 			state.executeUpdate(req);
 					
@@ -129,7 +129,7 @@ public class CommandeDAOSQL implements CommandeDAO {
 
 		try {
 			state = conn.createStatement();
-			String str = "UPDATE commande SET prixHT =" + commande.getPrixHT() + ", adresse='"
+			String str = "UPDATE commande SET ref = '" + commande.getRef() + "',prixHT =" + commande.getPrixHT() + ", adresse='"
 					+ commande.getAdresse() + "', idClient= " + commande.getIdClient() + ", date= '"
 					+ commande.getDate() + "', reglement= '" + commande.getReglement() + "' WHERE idCommande=" + id+ ";";
 			state.executeUpdate(str);

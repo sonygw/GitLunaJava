@@ -1,7 +1,5 @@
 package com.formation.model;
 
-import java.sql.Date;
-
 public class Client {
 	
 	private int idClient;
