@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JMenuBar;
 import javax.swing.ImageIcon;
+import javax.swing.JSeparator;
 
 public class jfArticles extends JFrame {
 
@@ -81,5 +82,32 @@ public class jfArticles extends JFrame {
 		JLabel label_1 = new JLabel("");
 		label_1.setBounds(10, 51, 189, 28);
 		panel.add(label_1);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setForeground(Color.BLACK);
+		btnNewButton.setBorder(null);
+		btnNewButton.setFocusable(false);
+		btnNewButton.setContentAreaFilled(false);
+		btnNewButton.setBackground(Color.WHITE);
+		btnNewButton.setBounds(36, 255, 133, 42);
+		panel.add(btnNewButton);
+		
+		JButton button = new JButton("New button");
+		button.setForeground(Color.BLACK);
+		button.setFocusable(false);
+		button.setContentAreaFilled(false);
+		button.setBorder(null);
+		button.setBackground(Color.WHITE);
+		button.setBounds(36, 299, 133, 42);
+		panel.add(button);
+		
+		JButton button_1 = new JButton("New button");
+		button_1.setForeground(Color.BLACK);
+		button_1.setFocusable(false);
+		button_1.setContentAreaFilled(false);
+		button_1.setBorder(null);
+		button_1.setBackground(Color.WHITE);
+		button_1.setBounds(36, 352, 133, 42);
+		panel.add(button_1);
 	}
 }

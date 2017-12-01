@@ -40,9 +40,9 @@ public class ClientDAOSQL implements ClientDAO {
 			state = conn.createStatement();
 			result = state.executeQuery("Select * from client where idClient = " + id);
 			result.next();
-			resultat = new Client(result.getInt("idClient"), result.getString("nom"), result.getString("mail"),
-					result.getString("adresse"), result.getBoolean("carteFidel"), result.getString("remarques"),
-					result.getString("telephone"), result.getString("dateCrea"));
+			resultat = new Client(result.getInt("idClient"), result.getString("nom"), result.getString("prenom"),
+					result.getString("mail"), result.getString("adresse"), result.getBoolean("carteFidel"),
+					result.getString("remarques"), result.getString("telephone"), result.getString("dateCrea"));
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -64,9 +64,9 @@ public class ClientDAOSQL implements ClientDAO {
 			result = state.executeQuery("Select * from client");
 
 			while (result.next()) {
-				resultat = new Client(result.getInt("idClient"), result.getString("nom"), result.getString("mail"),
-						result.getString("adresse"), result.getBoolean("carteFidel"), result.getString("remarques"),
-						result.getString("telephone"), result.getString("dateCrea"));
+				resultat = new Client(result.getInt("idClient"), result.getString("nom"), result.getString("prenom"),
+						result.getString("mail"), result.getString("adresse"), result.getBoolean("carteFidel"),
+						result.getString("remarques"), result.getString("telephone"), result.getString("dateCrea"));
 				clients.add(resultat);
 
 			}
@@ -100,10 +100,10 @@ public class ClientDAOSQL implements ClientDAO {
 
 		try {
 			state = conn.createStatement();
-			state.executeUpdate("Update client SET nom = '" + obj.getNom() + "', mail = '" + obj.getEmail()
-					+ "', adresse = '" + obj.getAdresse() + "', carteFidel = " + obj.isCarteFidelite() + ", remarques = '"
-					+ obj.getRemarques() + "', telephone = '" + obj.getNumeroTelephone() + "', dateCrea = '" + obj.getDate()
-					+ "' where idClient = " + id +";");
+			state.executeUpdate("Update client SET nom = '" + obj.getNom() + "', prenom = '" + obj.getPrenom()
+					+ "', mail = '" + obj.getEmail() + "', adresse = '" + obj.getAdresse() + "', carteFidel = "
+					+ obj.isCarteFidelite() + ", remarques = '" + obj.getRemarques() + "', telephone = '"
+					+ obj.getNumeroTelephone() + "', dateCrea = '" + obj.getDate() + "' where idClient = " + id + ";");
 			result = true;
 
 		} catch (SQLException e) {
@@ -120,9 +120,9 @@ public class ClientDAOSQL implements ClientDAO {
 
 		try {
 			state = conn.createStatement();
-			state.executeUpdate("insert into client values (null, '" + obj.getNom() + "','" + obj.getEmail() + "','"
-					+ obj.getAdresse() + "'," + obj.isCarteFidelite() + ",'" + obj.getRemarques() + "','"
-					+ obj.getNumeroTelephone() + "','" + obj.getDate() + "');");
+			state.executeUpdate("insert into client values (null, '" + obj.getNom() + "','" + obj.getPrenom() + "','"
+					+ obj.getEmail() + "','" + obj.getAdresse() + "'," + obj.isCarteFidelite() + ",'"
+					+ obj.getRemarques() + "','" + obj.getNumeroTelephone() + "','" + obj.getDate() + "');");
 
 			result = true;
 
@@ -132,6 +132,32 @@ public class ClientDAOSQL implements ClientDAO {
 		}
 
 		return result;
+	}
+
+	@Override
+	public ArrayList<Client> SelectAllClientsByName(String nom) {
+		ResultSet result = null;
+		ArrayList<Client> clients = new ArrayList<Client>();
+
+		Client resultat = null;
+
+		try {
+			state = conn.createStatement();
+			result = state.executeQuery("Select * from client where nom like '" + nom + "'");
+
+			while (result.next()) {
+				resultat = new Client(result.getInt("idClient"), result.getString("nom"), result.getString("prenom"),
+						result.getString("mail"), result.getString("adresse"), result.getBoolean("carteFidel"),
+						result.getString("remarques"), result.getString("telephone"), result.getString("dateCrea"));
+				clients.add(resultat);
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return clients;
 	}
 
 }
