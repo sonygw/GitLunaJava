@@ -6,6 +6,16 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.Rectangle;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.border.LineBorder;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JMenuBar;
+import javax.swing.ImageIcon;
 
 public class jfArticles extends JFrame {
 
@@ -31,12 +41,45 @@ public class jfArticles extends JFrame {
 	 * Create the frame.
 	 */
 	public jfArticles() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(jfArticles.class.getResource("/Images/Moon-32.png")));
+		setTitle("Gestion des articles");
+		setResizable(false);
+		setMinimumSize(new Dimension(800, 600));
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBackground(new Color(85, 107, 47));
+		panel.setBounds(0, 0, 223, 551);
+		contentPane.add(panel);
+		
+		JButton btnAcceuil = new JButton("Acceuil");
+		btnAcceuil.setContentAreaFilled(false);
+		btnAcceuil.setPressedIcon(new ImageIcon(jfArticles.class.getResource("/Images/gestion/Home-48-actif.png")));
+		btnAcceuil.setIcon(new ImageIcon(jfArticles.class.getResource("/Images/gestion/Home-48.png")));
+		btnAcceuil.setFocusable(false);
+		btnAcceuil.setForeground(Color.BLACK);
+		btnAcceuil.setBorder(null);
+		btnAcceuil.setBackground(new Color(85, 107, 47));
+		btnAcceuil.setBounds(10, 478, 119, 62);
+		panel.add(btnAcceuil);
+		
+		JLabel lblArticles = new JLabel("Articles");
+		lblArticles.setIcon(new ImageIcon(jfArticles.class.getResource("/Images/gestion/article/Product-64-actif.png")));
+		lblArticles.setFont(new Font("Dialog", Font.BOLD, 20));
+		lblArticles.setBounds(10, 12, 203, 67);
+		panel.add(lblArticles);
+		
+		JLabel label_1 = new JLabel("");
+		label_1.setBounds(10, 51, 189, 28);
+		panel.add(label_1);
 	}
-
 }
