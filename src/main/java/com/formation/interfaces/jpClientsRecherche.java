@@ -24,7 +24,7 @@ import java.awt.event.MouseEvent;
 import java.awt.Dimension;
 import javax.swing.table.DefaultTableModel;
 
-public class jpClients extends JPanel {
+public class jpClientsRecherche extends JPanel {
 	private JTextField fixe;
 	private JTextField prenom;
 	private JTextField adresse;
@@ -39,7 +39,7 @@ public class jpClients extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public jpClients() {
+	public jpClientsRecherche() {
 		setMinimumSize(new Dimension(790, 590));
 		setBackground(new Color(173, 216, 230));
 		
@@ -196,19 +196,19 @@ public class jpClients extends JPanel {
 					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
+						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
 						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 620, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
-					.addContainerGap())
-				.addComponent(panel_1, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 555, Short.MAX_VALUE)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 349, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(82, Short.MAX_VALUE))
+				.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 555, Short.MAX_VALUE)
 		);
 		
 		JButton btnNewButton = new JButton("Rechercher");
@@ -222,37 +222,6 @@ public class jpClients extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		
-		JButton btnAfficher = new JButton("Ajouter");
-		btnAfficher.setRolloverIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Add-New-48-actif.png")));
-		btnAfficher.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				btnAfficher.setIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Add-New-48-actif.png")));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				btnAfficher.setIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Add-New-48-actif.png")));
-			}
-		});
-		btnAfficher.setMinimumSize(new Dimension(56, 11));
-		btnAfficher.setMaximumSize(new Dimension(68, 20));
-		btnAfficher.setIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Add-New-48.png")));
-		btnAfficher.setContentAreaFilled(false);
-		btnAfficher.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		
-		JButton btnModifier = new JButton("Modifier");
-		btnModifier.setRolloverIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Data-Edit-48-actif.png")));
-		btnModifier.setIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Data-Edit-48.png")));
-		btnModifier.setContentAreaFilled(false);
-		
-		JButton btnSupprimer = new JButton("Supprimer");
-		btnSupprimer.setRolloverIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Garbage-Open-48-actif.png")));
-		btnSupprimer.setIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Garbage-Open-48.png")));
-		btnSupprimer.setContentAreaFilled(false);
 		
 		JButton btnImprimer = new JButton("Imprimer");
 		btnImprimer.setRolloverIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Printer-48-actif.png")));
@@ -277,74 +246,64 @@ public class jpClients extends JPanel {
 		btnAperu.setIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Preview-48.png")));
 		btnAperu.setContentAreaFilled(false);
 		
-		JButton btnClients = new JButton("CLIENTS");
-		btnClients.setRolloverIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/client/People-64-actif.png")));
+		JButton btnClients = new JButton("");
+		btnClients.setRolloverIcon(new ImageIcon(jpClientsRecherche.class.getResource("/Images/gestion/client/User-Find-64.png")));
 		btnClients.setBackground(new Color(127, 255, 212));
 		btnClients.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		btnClients.setContentAreaFilled(false);
-		btnClients.setIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/client/People-64-actif.png")));
+		btnClients.setIcon(new ImageIcon(jpClientsRecherche.class.getResource("/Images/gestion/client/User-Find-64.png")));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.TRAILING)
-				.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addComponent(btnAperu, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+				.addComponent(btnImprimer, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
 				.addGroup(gl_panel_1.createSequentialGroup()
 					.addComponent(btnClients)
 					.addContainerGap())
-				.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
+				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(btnAfficher, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-					.addContainerGap())
-				.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
-					.addComponent(btnModifier, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-					.addContainerGap())
-				.addComponent(btnSupprimer, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-				.addComponent(btnAperu, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-				.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(btnExport, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-					.addContainerGap())
-				.addComponent(btnImprimer, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-				.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
 					.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+					.addContainerGap())
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(btnExport, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+					.addContainerGap())
+				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
 					.addContainerGap())
 		);
 		gl_panel_1.setVerticalGroup(
 			gl_panel_1.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panel_1.createSequentialGroup()
+				.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
 					.addComponent(btnClients)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnAfficher, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnNewButton)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnModifier, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnSupprimer)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGap(196)
 					.addComponent(btnAperu, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnImprimer, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnExport, GroupLayout.PREFERRED_SIZE, 51, Short.MAX_VALUE)
-					.addGap(18)
+					.addComponent(btnExport)
+					.addGap(56)
 					.addComponent(btnNewButton_1)
-					.addGap(3))
+					.addContainerGap(83, Short.MAX_VALUE))
 		);
 		panel_1.setLayout(gl_panel_1);
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
-				new Object[][] {
-				},
-				new String[] {
-					"Code", "Nom", "Prénom", "Carte Fidélité", "Date Création"}
+			new Object[][] {
+			},
+			new String[] {
+				"Code", "Nom", "Prénom", "Carte Fidélité", "Date Création"
+			}
 		));
 		scrollPane.setViewportView(table);
 		setLayout(groupLayout);
-		
 
 	}
 }

@@ -13,6 +13,7 @@ public class Client {
 	private String numeroTelephone;
 	private String remarques;
 	private String date;
+	private String code;
 	
 	
 	
@@ -35,7 +36,7 @@ public class Client {
 
 
 	public Client(int idClient, String nom, String prenom, String email, String adresse, boolean carteFidelite, String numeroTelephone,
-			String remarques, String date) {
+			String remarques, String date, String code) {
 		super();
 		this.idClient = idClient;
 		this.nom = nom;
@@ -46,6 +47,19 @@ public class Client {
 		this.numeroTelephone = numeroTelephone;
 		this.remarques = remarques;
 		this.date = date;
+		this.code = code;
+	}
+
+
+
+	public String getCode() {
+		return code;
+	}
+
+
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 

@@ -17,6 +17,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Component;
+import java.awt.Dimension;
 
 public class jfClients extends JFrame {
 
@@ -42,11 +43,12 @@ public class jfClients extends JFrame {
 	 * Create the frame.
 	 */
 	public jfClients() {
+		setMinimumSize(new Dimension(800, 600));
 		setResizable(false);
 		setTitle("Gestion des Clients");
 		setBackground(Color.WHITE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(jfClients.class.getResource("/Images/Moon-32.png")));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 658, 455);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(153, 255, 255));
@@ -62,10 +64,10 @@ public class jfClients extends JFrame {
 				.addGap(0, 395, Short.MAX_VALUE)
 		);
 		contentPane.setLayout(gl_contentPane);
-		
+//		
 //		jpClients cli = new jpClients();
-//		cli.setBounds(0, 0, 700, 600);      ajout de JPanel dans JFrame
-//		getContentPane().add(cli);
+//	cli.setBounds(0, 0, 700, 600);      //ajout de JPanel dans JFrame
+//	getContentPane().add(cli);
 	
 	}
 }

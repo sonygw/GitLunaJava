@@ -42,7 +42,7 @@ public class ClientDAOSQL implements ClientDAO {
 			result.next();
 			resultat = new Client(result.getInt("idClient"), result.getString("nom"), result.getString("prenom"),
 					result.getString("mail"), result.getString("adresse"), result.getBoolean("carteFidel"),
-					result.getString("remarques"), result.getString("telephone"), result.getString("dateCrea"));
+					result.getString("remarques"), result.getString("telephone"), result.getString("dateCrea"), result.getString("code"));
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -66,7 +66,7 @@ public class ClientDAOSQL implements ClientDAO {
 			while (result.next()) {
 				resultat = new Client(result.getInt("idClient"), result.getString("nom"), result.getString("prenom"),
 						result.getString("mail"), result.getString("adresse"), result.getBoolean("carteFidel"),
-						result.getString("remarques"), result.getString("telephone"), result.getString("dateCrea"));
+						result.getString("remarques"), result.getString("telephone"), result.getString("dateCrea"), result.getString("code"));
 				clients.add(resultat);
 
 			}
@@ -120,7 +120,7 @@ public class ClientDAOSQL implements ClientDAO {
 
 		try {
 			state = conn.createStatement();
-			state.executeUpdate("insert into client values (null, '" + obj.getNom() + "','" + obj.getPrenom() + "','"
+			state.executeUpdate("insert into client values (null, '" + obj.getCode() + "','" + obj.getNom() + "','" + obj.getPrenom() + "','"
 					+ obj.getEmail() + "','" + obj.getAdresse() + "'," + obj.isCarteFidelite() + ",'"
 					+ obj.getRemarques() + "','" + obj.getNumeroTelephone() + "','" + obj.getDate() + "');");
 
@@ -148,7 +148,7 @@ public class ClientDAOSQL implements ClientDAO {
 			while (result.next()) {
 				resultat = new Client(result.getInt("idClient"), result.getString("nom"), result.getString("prenom"),
 						result.getString("mail"), result.getString("adresse"), result.getBoolean("carteFidel"),
-						result.getString("remarques"), result.getString("telephone"), result.getString("dateCrea"));
+						result.getString("remarques"), result.getString("telephone"), result.getString("dateCrea"), result.getString("code"));
 				clients.add(resultat);
 
 			}
