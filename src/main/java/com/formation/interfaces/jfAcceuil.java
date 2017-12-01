@@ -68,10 +68,14 @@ public class jfAcceuil extends JFrame {
 		menu.setLayout(null);
 		
 		JButton btnQuitter = new JButton("Quitter");
-		btnQuitter.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		btnQuitter.setPressedIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/gestion/Cancel-48-actif.png")));
+		btnQuitter.setFocusable(false);
+		btnQuitter.setContentAreaFilled(false);
+		btnQuitter.setIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/gestion/Cancel-48.png")));
+		btnQuitter.setBorder(null);
 		btnQuitter.setForeground(Color.BLACK);
 		btnQuitter.setBackground(Color.GRAY);
-		btnQuitter.setBounds(10, 478, 203, 62);
+		btnQuitter.setBounds(10, 478, 123, 62);
 		menu.add(btnQuitter);
 		
 		JLabel lblTitre = new JLabel("SARL LUNA");
@@ -79,8 +83,8 @@ public class jfAcceuil extends JFrame {
 		lblTitre.setBounds(10, 12, 203, 43);
 		menu.add(lblTitre);
 		
-		JLabel lblAffichage = new JLabel("vide");
-		lblAffichage.setBounds(10, 51, 99, 28);
+		JLabel lblAffichage = new JLabel("");
+		lblAffichage.setBounds(10, 51, 189, 28);
 		menu.add(lblAffichage);
 		
 		//UI.getLogo();
@@ -92,22 +96,38 @@ public class jfAcceuil extends JFrame {
 		contentPane.add(corps);
 		corps.setLayout(null);
 		
-		JButton btnCommandes = new JButton("");
-		btnCommandes.setFocusable(false);
-		btnCommandes.setOpaque(false);
-		btnCommandes.setBackground(Color.WHITE);
-		btnCommandes.setBorder(null);
-		btnCommandes.addActionListener(new ActionListener() {
+		JButton btnArticles = new JButton("");
+		btnArticles.setContentAreaFilled(false);
+		btnArticles.setPressedIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/accueil/Product-128-actif.png")));
+		btnArticles.setFocusable(false);
+		btnArticles.setOpaque(false);
+		btnArticles.setBackground(Color.WHITE);
+		btnArticles.setBorder(null);
+		btnArticles.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				// todo nouvelle jframe
+				jfArticles fen = new jfArticles();
+				fen.setVisible(true);
 			}
 		});
-		btnCommandes.setIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/accueil/Product-128-actif.png")));
-		btnCommandes.setBounds(228, 51, 135, 135);
-		corps.add(btnCommandes);
+		btnArticles.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblAffichage.setText("Gestion Articles");
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblAffichage.setText("");
+			}
+		});
+		
+		btnArticles.setIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/accueil/Product-128.png")));
+		btnArticles.setBounds(228, 51, 135, 135);
+		corps.add(btnArticles);
 		
 		JButton btnClients = new JButton("");
+		btnClients.setContentAreaFilled(false);
+		btnClients.setPressedIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/accueil/People-128-actif.png")));
 		btnClients.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -122,57 +142,101 @@ public class jfAcceuil extends JFrame {
 		btnClients.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//TODO nouvelle jframe
+				jfClients fen = new jfClients();
+				fen.setVisible(true);
+				
 			}
 		});
 		btnClients.setFocusable(false);
 		btnClients.setOpaque(false);
 		btnClients.setBorder(null);
 		btnClients.setBackground(Color.WHITE);
-		btnClients.setIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/accueil/People-128-actif.png")));
+		btnClients.setIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/accueil/People-128.png")));
 		btnClients.setBounds(64, 209, 135, 135);
 		corps.add(btnClients);
 		
-		JButton btnArticles = new JButton("");
-		btnArticles.setFocusable(false);
-		btnArticles.setBackground(Color.WHITE);
-		btnArticles.setBorder(null);
-		btnArticles.setOpaque(false);
-		btnArticles.setIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/accueil/Shopping-Bag-128-actif.png")));
-		btnArticles.addActionListener(new ActionListener() {
+		JButton btnCommandes = new JButton("");
+		btnCommandes.setContentAreaFilled(false);
+		btnCommandes.setPressedIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/accueil/Shopping-Bag-128-actif.png")));
+		btnCommandes.setFocusable(false);
+		btnCommandes.setBackground(Color.WHITE);
+		btnCommandes.setBorder(null);
+		btnCommandes.setOpaque(false);
+		btnCommandes.setIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/accueil/Shopping-Bag-128.png")));
+		btnCommandes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				//todo nouvelle jframe
 			}
 		});
-		btnArticles.setBounds(390, 209, 135, 135);
-		corps.add(btnArticles);
+		
+		btnCommandes.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblAffichage.setText("Gestion Commandes");
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblAffichage.setText("");
+			}
+		});
+		
+		btnCommandes.setBounds(390, 209, 135, 135);
+		corps.add(btnCommandes);
 		
 		JButton btnParametres = new JButton("");
+		btnParametres.setContentAreaFilled(false);
+		btnParametres.setPressedIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/accueil/Settings-02-128-actif.png")));
 		btnParametres.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// todo nouvelle Jframe
 			}
 		});
+		
+		btnParametres.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblAffichage.setText("Gestion Clients");
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblAffichage.setText("");
+			}
+		});
+		
 		btnParametres.setFocusable(false);
 		btnParametres.setBorder(null);
 		btnParametres.setOpaque(false);
 		btnParametres.setBackground(Color.WHITE);
-		btnParametres.setIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/accueil/Settings-02-128-actif.png")));
+		btnParametres.setIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/accueil/Settings-02-128.png")));
 		btnParametres.setBounds(228, 362, 135, 135);
 		corps.add(btnParametres);
 		
 		JButton btnGraphs = new JButton("");
+		btnGraphs.setContentAreaFilled(false);
+		btnGraphs.setPressedIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/accueil/Diagram-128-actif.png")));
 		btnGraphs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//todo nouvelle jframe
 			}
 		});
+		
+		btnGraphs.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblAffichage.setText("Gestion Clients");
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblAffichage.setText("");
+			}
+		});
+		
 		btnGraphs.setOpaque(false);
 		btnGraphs.setBackground(Color.WHITE);
 		btnGraphs.setBorder(null);
 		btnGraphs.setFocusable(false);
-		btnGraphs.setIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/accueil/Diagram-128-actif.png")));
+		btnGraphs.setIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/accueil/Diagram-128.png")));
 		btnGraphs.setBounds(228, 209, 135, 135);
 		corps.add(btnGraphs);
 	}
