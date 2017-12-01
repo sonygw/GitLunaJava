@@ -8,6 +8,15 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
 import java.awt.Color;
+import javax.swing.JLabel;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.JTextField;
+import java.awt.Checkbox;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.Component;
 
 public class jfClients extends JFrame {
 
@@ -33,15 +42,25 @@ public class jfClients extends JFrame {
 	 * Create the frame.
 	 */
 	public jfClients() {
-		setTitle("                                                 Gestion des Clients");
+		setResizable(false);
+		setTitle("Gestion des Clients");
 		setBackground(Color.WHITE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(jfClients.class.getResource("/Images/Moon-32.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 539, 450);
+		setBounds(100, 100, 658, 455);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(153, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 628, Short.MAX_VALUE)
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 395, Short.MAX_VALUE)
+		);
+		contentPane.setLayout(gl_contentPane);
 	}
-
 }
