@@ -21,6 +21,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Dimension;
 
 public class jpClients extends JPanel {
 	private JTextField textField_1;
@@ -39,6 +40,7 @@ public class jpClients extends JPanel {
 	 * Create the panel.
 	 */
 	public jpClients() {
+		setBackground(new Color(173, 216, 230));
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -108,18 +110,16 @@ public class jpClients extends JPanel {
 				.addGroup(gl_panel.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(lblEmail)
-							.addGap(18))
-						.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-						.addComponent(label_8, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblRemarques)
 						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+							.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+							.addComponent(label_8, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
+							.addComponent(label, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 							.addComponent(label_6, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-							.addComponent(label, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
-						.addComponent(lblRemarques))
+							.addComponent(lblEmail)))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(remarques, GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
+						.addComponent(remarques, GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
 						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
 							.addGroup(gl_panel.createSequentialGroup()
 								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
@@ -161,8 +161,8 @@ public class jpClients extends JPanel {
 								.addComponent(code, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(label_7)
 								.addComponent(date, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(label_6)
-								.addComponent(chckbxCarteDeFidlit))
+								.addComponent(chckbxCarteDeFidlit)
+								.addComponent(label_6))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 								.addComponent(prenom, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -194,6 +194,7 @@ public class jpClients extends JPanel {
 		JScrollPane scrollPane = new JScrollPane();
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(65, 105, 225));
 		panel_1.setBorder(null);
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
@@ -208,18 +209,17 @@ public class jpClients extends JPanel {
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE))
-						.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 612, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(22, Short.MAX_VALUE))
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+					.addContainerGap())
+				.addComponent(panel_1, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 555, Short.MAX_VALUE)
 		);
 		
 		JButton btnNewButton = new JButton("Rechercher");
+		btnNewButton.setRolloverIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Search-32-actif.png")));
 		btnNewButton.setIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Search-48.png")));
 		btnNewButton.setContentAreaFilled(false);
 		btnNewButton.setFocusTraversalKeysEnabled(false);
@@ -230,7 +230,20 @@ public class jpClients extends JPanel {
 			}
 		});
 		
-		JButton btnAfficher = new JButton("Afficher");
+		JButton btnAfficher = new JButton("Ajouter");
+		btnAfficher.setRolloverIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Add-New-48-actif.png")));
+		btnAfficher.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnAfficher.setIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Add-New-48-actif.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnAfficher.setIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Add-New-48-actif.png")));
+			}
+		});
+		btnAfficher.setMinimumSize(new Dimension(56, 11));
+		btnAfficher.setMaximumSize(new Dimension(68, 20));
 		btnAfficher.setIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Add-New-48.png")));
 		btnAfficher.setContentAreaFilled(false);
 		btnAfficher.addActionListener(new ActionListener() {
@@ -239,79 +252,93 @@ public class jpClients extends JPanel {
 		});
 		
 		JButton btnModifier = new JButton("Modifier");
+		btnModifier.setRolloverIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Data-Edit-48-actif.png")));
 		btnModifier.setIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Data-Edit-48.png")));
 		btnModifier.setContentAreaFilled(false);
 		
 		JButton btnSupprimer = new JButton("Supprimer");
+		btnSupprimer.setRolloverIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Garbage-Open-48-actif.png")));
 		btnSupprimer.setIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Garbage-Open-48.png")));
 		btnSupprimer.setContentAreaFilled(false);
 		
 		JButton btnImprimer = new JButton("Imprimer");
+		btnImprimer.setRolloverIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Printer-48-actif.png")));
 		btnImprimer.setIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Printer-48.png")));
 		btnImprimer.setContentAreaFilled(false);
 		
 		JButton btnExport = new JButton("Export");
+		btnExport.setRolloverIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Data-Export-48-actif.png")));
 		btnExport.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		btnExport.setIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Data-Export-48.png")));
 		btnExport.setBorderPainted(false);
 		btnExport.setContentAreaFilled(false);
 		
 		JButton btnNewButton_1 = new JButton("Accueil");
+		btnNewButton_1.setRolloverIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Home-48-actif.png")));
 		btnNewButton_1.setIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Home-48.png")));
 		btnNewButton_1.setContentAreaFilled(false);
 		btnNewButton_1.setDefaultCapable(false);
 		
 		JButton btnAperu = new JButton("Aper\u00E7u");
+		btnAperu.setRolloverIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Preview-48-actif.png")));
 		btnAperu.setIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Preview-48.png")));
 		btnAperu.setContentAreaFilled(false);
 		
 		JButton btnClients = new JButton("CLIENTS");
+		btnClients.setRolloverIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/client/People-64-actif.png")));
+		btnClients.setBackground(new Color(127, 255, 212));
+		btnClients.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnClients.setContentAreaFilled(false);
 		btnClients.setIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/client/People-64-actif.png")));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+			gl_panel_1.createParallelGroup(Alignment.TRAILING)
+				.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+				.addGroup(gl_panel_1.createSequentialGroup()
 					.addComponent(btnClients)
 					.addContainerGap())
-				.addGroup(gl_panel_1.createSequentialGroup()
+				.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGap(10)
-							.addComponent(btnNewButton_1))
-						.addComponent(btnExport)
-						.addComponent(btnSupprimer)
-						.addComponent(btnNewButton)
-						.addComponent(btnModifier)
-						.addComponent(btnAfficher)
-						.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
-							.addComponent(btnAperu)
-							.addComponent(btnImprimer)))
-					.addContainerGap(9, Short.MAX_VALUE))
+					.addComponent(btnAfficher, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+					.addContainerGap())
+				.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
+					.addComponent(btnModifier, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+					.addContainerGap())
+				.addComponent(btnSupprimer, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+				.addComponent(btnAperu, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+				.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(btnExport, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+					.addContainerGap())
+				.addComponent(btnImprimer, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+				.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
+					.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+					.addContainerGap())
 		);
 		gl_panel_1.setVerticalGroup(
 			gl_panel_1.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel_1.createSequentialGroup()
 					.addComponent(btnClients)
-					.addPreferredGap(ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-					.addComponent(btnAfficher)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnAfficher, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(btnNewButton)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnModifier)
+					.addComponent(btnModifier, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnSupprimer)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnAperu, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(btnImprimer)
-					.addGap(28)
-					.addComponent(btnExport)
+					.addComponent(btnAperu, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnImprimer, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnExport, GroupLayout.PREFERRED_SIZE, 51, Short.MAX_VALUE)
+					.addGap(18)
 					.addComponent(btnNewButton_1)
-					.addGap(31))
+					.addGap(3))
 		);
 		panel_1.setLayout(gl_panel_1);
 		
