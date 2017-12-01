@@ -21,6 +21,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class jfConnexion extends JFrame {
 
@@ -48,6 +49,7 @@ public class jfConnexion extends JFrame {
 	 * Create the frame.
 	 */
 	public jfConnexion() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(jfConnexion.class.getResource("/Images/Moon-32.png")));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -58,7 +60,7 @@ public class jfConnexion extends JFrame {
 
 		JLabel lblSarlLunaBienvenue = new JLabel("S.A.R.L LUNA \r\nBIENVENUE");
 		lblSarlLunaBienvenue.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblSarlLunaBienvenue.setBounds(91, 0, 261, 33);
+		lblSarlLunaBienvenue.setBounds(111, 0, 261, 33);
 		contentPane.add(lblSarlLunaBienvenue);
 
 		login = new JTextField();
