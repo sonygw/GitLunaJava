@@ -4,7 +4,7 @@ public class Article {
 
 	
 	private int idArticle;
-	private String nom;
+	private String code;
 	private String description;
 	private double prixHT;
 	private int quantite;
@@ -15,10 +15,10 @@ public class Article {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Article(int idArticle, String nom, String description, double prixHT, int quantite, String categorie) {
+	public Article(int idArticle, String code, String description, double prixHT, int quantite, String categorie) {
 		super();
 		this.idArticle = idArticle;
-		this.nom = nom;
+		this.code = code;
 		this.description = description;
 		this.prixHT = prixHT;
 		this.quantite = quantite;
@@ -41,12 +41,12 @@ public class Article {
 		this.idArticle = idArticle;
 	}
 
-	public String getNom() {
-		return nom;
+	public String getCode() {
+		return code;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public String getDescription() {

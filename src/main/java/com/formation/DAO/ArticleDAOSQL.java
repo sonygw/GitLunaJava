@@ -35,7 +35,7 @@ public class ArticleDAOSQL implements ArticleDAO {
 			result = state.executeQuery("Select * from article");
 
 			while (result.next()) {
-				resultat = new Article(result.getInt("idArticle"), result.getString("nom"),
+				resultat = new Article(result.getInt("idArticle"), result.getString("code"),
 						result.getString("description"), result.getDouble("prixHT"), result.getInt("quantite"),
 						result.getString("categorie"));
 				articles.add(resultat);
@@ -60,7 +60,7 @@ public class ArticleDAOSQL implements ArticleDAO {
 			state = conn.createStatement();
 			result = state.executeQuery("Select * from article where idArticle = " + id);
 			result.next();
-			article = new Article(result.getInt("idArticle"), result.getString("nom"), result.getString("description"),
+			article = new Article(result.getInt("idArticle"), result.getString("code"), result.getString("description"),
 					result.getDouble("prixHT"), result.getInt("quantite"), result.getString("categorie"));
 
 		} catch (SQLException e) {
@@ -94,7 +94,7 @@ public class ArticleDAOSQL implements ArticleDAO {
 		try {
 			state = conn.createStatement();
 			
-			String str = "Update article SET nom = '" + obj.getNom() + "', description = '" + obj.getDescription()
+			String str = "Update article SET code = '" + obj.getCode() + "', description = '" + obj.getDescription()
 					+ "', prixHT = " + obj.getPrixHT() + ", quantite = " + obj.getQuantite() + ", categorie = '"
 					+ obj.getCategorie() + "' where idArticle = " + id;
 			state.executeUpdate(str);
@@ -114,7 +114,7 @@ public class ArticleDAOSQL implements ArticleDAO {
 
 		try {
 			state = conn.createStatement();
-			state.executeUpdate("INSERT INTO article VALUES (null, '" +  obj.getNom() + "','" + obj.getDescription()
+			state.executeUpdate("INSERT INTO article VALUES (null, '" +  obj.getCode() + "','" + obj.getDescription()
 		+ "'," + obj.getPrixHT() + "," + obj.getQuantite() + ",'"
 		+ obj.getCategorie()+"')");
 			result=true;
