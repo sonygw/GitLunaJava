@@ -68,6 +68,11 @@ public class jfAcceuil extends JFrame {
 		menu.setLayout(null);
 		
 		JButton btnQuitter = new JButton("Quitter");
+		btnQuitter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			dispose();
+			}
+		});
 		btnQuitter.setPressedIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/gestion/Cancel-48-actif.png")));
 		btnQuitter.setFocusable(false);
 		btnQuitter.setContentAreaFilled(false);

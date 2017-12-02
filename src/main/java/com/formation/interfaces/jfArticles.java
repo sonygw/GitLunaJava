@@ -168,7 +168,7 @@ public class jfArticles extends JFrame {
 		lblNewLabel.setBounds(264, 14, 74, 16);
 		panel_1.add(lblNewLabel);
 
-		JLabel lblNewLabel_1 = new JLabel("Nom : ");
+		JLabel lblNewLabel_1 = new JLabel("Code : ");
 		lblNewLabel_1.setBounds(9, 14, 55, 16);
 		panel_1.add(lblNewLabel_1);
 
