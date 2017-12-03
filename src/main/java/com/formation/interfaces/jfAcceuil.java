@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Dimension;
 import java.awt.Color;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.JMenu;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
@@ -50,27 +51,27 @@ public class jfAcceuil extends JFrame {
 		setMinimumSize(new Dimension(800, 600));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 787, 596);
-		
+
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
-		
+
 		JMenu mnFichier = new JMenu("Fichier");
 		menuBar.add(mnFichier);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JPanel menu = new JPanel();
 		menu.setBackground(Color.GRAY);
 		menu.setBounds(0, 0, 223, 551);
 		contentPane.add(menu);
 		menu.setLayout(null);
-		
+
 		JButton btnQuitter = new JButton("Quitter");
 		btnQuitter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			dispose();
+				dispose();
 			}
 		});
 		btnQuitter.setPressedIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/gestion/Cancel-48-actif.png")));
@@ -82,37 +83,38 @@ public class jfAcceuil extends JFrame {
 		btnQuitter.setBackground(Color.GRAY);
 		btnQuitter.setBounds(10, 478, 123, 62);
 		menu.add(btnQuitter);
-		
+
 		JLabel lblTitre = new JLabel("SARL LUNA");
 		lblTitre.setFont(new Font("Dialog", Font.BOLD, 20));
 		lblTitre.setBounds(10, 12, 203, 43);
 		menu.add(lblTitre);
-		
+
 		JLabel lblAffichage = new JLabel("");
 		lblAffichage.setBounds(10, 51, 189, 28);
 		menu.add(lblAffichage);
-		
-		//UI.getLogo();
-		
+
+		// UI.getLogo();
+
 		JPanel corps = new JPanel();
 		corps.setOpaque(false);
 		corps.setBorder(null);
 		corps.setBounds(221, 0, 573, 551);
 		contentPane.add(corps);
 		corps.setLayout(null);
-		
+
 		JButton btnArticles = new JButton("");
+		btnArticles
+				.setRolloverIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/accueil/Product-128-actif.png")));
 		btnArticles.setContentAreaFilled(false);
-		btnArticles.setPressedIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/accueil/Product-128-actif.png")));
 		btnArticles.setFocusable(false);
 		btnArticles.setOpaque(false);
 		btnArticles.setBackground(Color.WHITE);
 		btnArticles.setBorder(null);
 		btnArticles.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				jfArticles fen = new jfArticles();
-				fen.setVisible(true);
+
+				jfArticles frame = new jfArticles();
+				frame.setVisible(true);
 			}
 		});
 		btnArticles.addMouseListener(new MouseAdapter() {
@@ -120,36 +122,38 @@ public class jfAcceuil extends JFrame {
 			public void mouseEntered(MouseEvent e) {
 				lblAffichage.setText("Gestion Articles");
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				lblAffichage.setText("");
 			}
 		});
-		
+
 		btnArticles.setIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/accueil/Product-128.png")));
 		btnArticles.setBounds(228, 51, 135, 135);
 		corps.add(btnArticles);
-		
+
 		JButton btnClients = new JButton("");
+		btnClients.setRolloverIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/accueil/People-128-actif.png")));
 		btnClients.setContentAreaFilled(false);
-		btnClients.setPressedIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/accueil/People-128-actif.png")));
 		btnClients.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				lblAffichage.setText("Gestion Clients");
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				lblAffichage.setText("");
 			}
 		});
-		
+
 		btnClients.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				jfClients fen = new jfClients();
 				fen.setVisible(true);
-				
+
 			}
 		});
 		btnClients.setFocusable(false);
@@ -159,10 +163,11 @@ public class jfAcceuil extends JFrame {
 		btnClients.setIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/accueil/People-128.png")));
 		btnClients.setBounds(64, 209, 135, 135);
 		corps.add(btnClients);
-		
+
 		JButton btnCommandes = new JButton("");
+		btnCommandes.setRolloverIcon(
+				new ImageIcon(jfAcceuil.class.getResource("/Images/accueil/Shopping-Bag-128-actif.png")));
 		btnCommandes.setContentAreaFilled(false);
-		btnCommandes.setPressedIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/accueil/Shopping-Bag-128-actif.png")));
 		btnCommandes.setFocusable(false);
 		btnCommandes.setBackground(Color.WHITE);
 		btnCommandes.setBorder(null);
@@ -170,45 +175,51 @@ public class jfAcceuil extends JFrame {
 		btnCommandes.setIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/accueil/Shopping-Bag-128.png")));
 		btnCommandes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				//todo nouvelle jframe
+
+				jfCommandes frame = new jfCommandes();
+				frame.setVisible(true);
 			}
 		});
-		
+
 		btnCommandes.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				lblAffichage.setText("Gestion Commandes");
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				lblAffichage.setText("");
 			}
 		});
-		
+
 		btnCommandes.setBounds(390, 209, 135, 135);
 		corps.add(btnCommandes);
-		
+
 		JButton btnParametres = new JButton("");
+		btnParametres.setRolloverIcon(
+				new ImageIcon(jfAcceuil.class.getResource("/Images/accueil/Settings-02-128-actif.png")));
 		btnParametres.setContentAreaFilled(false);
-		btnParametres.setPressedIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/accueil/Settings-02-128-actif.png")));
 		btnParametres.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// todo nouvelle Jframe
+				jfParam frame = new jfParam();
+				frame.setVisible(true);
+
 			}
 		});
-		
+
 		btnParametres.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				lblAffichage.setText("Gestion Clients");
+				lblAffichage.setText("Paramètres");
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				lblAffichage.setText("");
 			}
 		});
-		
+
 		btnParametres.setFocusable(false);
 		btnParametres.setBorder(null);
 		btnParametres.setOpaque(false);
@@ -216,27 +227,29 @@ public class jfAcceuil extends JFrame {
 		btnParametres.setIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/accueil/Settings-02-128.png")));
 		btnParametres.setBounds(228, 362, 135, 135);
 		corps.add(btnParametres);
-		
+
 		JButton btnGraphs = new JButton("");
+		btnGraphs.setRolloverIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/accueil/Diagram-128-actif.png")));
 		btnGraphs.setContentAreaFilled(false);
-		btnGraphs.setPressedIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/accueil/Diagram-128-actif.png")));
 		btnGraphs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//todo nouvelle jframe
+
+				JOptionPane.showMessageDialog(null, "Pas encore implementé");
 			}
 		});
-		
+
 		btnGraphs.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				lblAffichage.setText("Gestion Clients");
+				lblAffichage.setText("Statistiques");
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				lblAffichage.setText("");
 			}
 		});
-		
+
 		btnGraphs.setOpaque(false);
 		btnGraphs.setBackground(Color.WHITE);
 		btnGraphs.setBorder(null);

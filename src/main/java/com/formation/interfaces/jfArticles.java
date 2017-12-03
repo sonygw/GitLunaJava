@@ -79,10 +79,10 @@ public class jfArticles extends JFrame {
 
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
-		
+
 		JMenu mnNewMenu = new JMenu("New menu");
 		menuBar.add(mnNewMenu);
-		
+
 		JMenuItem mntmQuitter = new JMenuItem("Quitter");
 		mntmQuitter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -360,39 +360,40 @@ public class jfArticles extends JFrame {
 
 			public void actionPerformed(ActionEvent arg0) {
 				if (textFieldCode.isEditable()) {
-					
-					if(textFieldQte.getText().equals(""))
+
+					if (textFieldQte.getText().equals(""))
 						JOptionPane.showMessageDialog(null, "Renseignez une quantité de l'article svp.");
-					else if(textFieldPrix.getText().equals(""))
+					else if (textFieldPrix.getText().equals(""))
 						JOptionPane.showMessageDialog(null, "Renseignez un prix pour l'article svp.");
-					else{
+					else {
 						art = new Article(-1, textFieldCode.getText(), textFieldDesign.getText(),
-					
-							Double.parseDouble(textFieldPrix.getText()), Integer.parseInt(textFieldQte.getText()),
-							textFieldCategorie.getText());
 
-					if (dao.CreateArticle(art)) {
-						JOptionPane.showMessageDialog(null, "Article correctement ajouté.");
-						textFieldCategorie.setEditable(false);
-						textFieldCode.setEditable(false);
-						textFieldDesign.setEditable(false);
-						textFieldPrix.setEditable(false);
-						textFieldQte.setEditable(false);
+								Double.parseDouble(textFieldPrix.getText()), Integer.parseInt(textFieldQte.getText()),
+								textFieldCategorie.getText());
 
-						// on rajoute la ligne dans le tableau
-						tblModel.addRow(tableData);
-						table.setValueAt(art.getIdArticle(), tblModel.getRowCount() - 1, 0);
-						table.setValueAt(art.getCode(), tblModel.getRowCount() - 1, 1);
-						table.setValueAt(art.getCategorie(), tblModel.getRowCount() - 1, 2);
-						table.setValueAt(art.getDescription(), tblModel.getRowCount() - 1, 3);
-						table.setValueAt(art.getQuantite(), tblModel.getRowCount() - 1, 4);
-						table.setValueAt(art.getPrixHT(), tblModel.getRowCount() - 1, 5);
+						if (dao.CreateArticle(art)) {
+							JOptionPane.showMessageDialog(null, "Article correctement ajouté.");
+							textFieldCategorie.setEditable(false);
+							textFieldCode.setEditable(false);
+							textFieldDesign.setEditable(false);
+							textFieldPrix.setEditable(false);
+							textFieldQte.setEditable(false);
 
-					} else {
-						JOptionPane.showMessageDialog(null,
-								"Problème d'ajout en base. Contactez l'équipe de développement.");
+							// on rajoute la ligne dans le tableau
+							tblModel.addRow(tableData);
+							table.setValueAt(art.getIdArticle(), tblModel.getRowCount() - 1, 0);
+							table.setValueAt(art.getCode(), tblModel.getRowCount() - 1, 1);
+							table.setValueAt(art.getCategorie(), tblModel.getRowCount() - 1, 2);
+							table.setValueAt(art.getDescription(), tblModel.getRowCount() - 1, 3);
+							table.setValueAt(art.getQuantite(), tblModel.getRowCount() - 1, 4);
+							table.setValueAt(art.getPrixHT(), tblModel.getRowCount() - 1, 5);
+
+						} else {
+							JOptionPane.showMessageDialog(null,
+									"Problème d'ajout en base. Contactez l'équipe de développement.");
+						}
 					}
-					}} else {
+				} else {
 
 					textFieldCategorie.setText("");
 					textFieldCode.setText("");

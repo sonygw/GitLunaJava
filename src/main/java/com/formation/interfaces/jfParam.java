@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.Toolkit;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class jfParam extends JFrame {
 
@@ -31,12 +35,20 @@ public class jfParam extends JFrame {
 	 * Create the frame.
 	 */
 	public jfParam() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("\u00C0 propos");
+		setResizable(false);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(jfParam.class.getResource("/Images/Moon-32.png")));
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblApplicationDveloppePar = new JLabel("<html><center> Application d\u00E9velopp\u00E9e par : <br>\r\nZybura Louis <br>\r\nArenas Daniel");
+		lblApplicationDveloppePar.setHorizontalAlignment(SwingConstants.CENTER);
+		lblApplicationDveloppePar.setFont(new Font("Tahoma", Font.BOLD, 40));
+		lblApplicationDveloppePar.setBounds(23, 28, 385, 210);
+		contentPane.add(lblApplicationDveloppePar);
 	}
-
 }

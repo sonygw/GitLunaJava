@@ -87,7 +87,7 @@ public class jfCommandes extends JFrame {
 		setTitle("Gestion des commandes");
 		setResizable(false);
 		setMinimumSize(new Dimension(800, 600));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 
 		ClientDAOSQL clientDao = new ClientDAOSQL(ConnexionJDBC.getInstance());
@@ -97,10 +97,10 @@ public class jfCommandes extends JFrame {
 
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
-		
+
 		JMenu mnNewMenu = new JMenu("New menu");
 		menuBar.add(mnNewMenu);
-		
+
 		JMenuItem mntmQuitter = new JMenuItem("Quitter");
 		mnNewMenu.add(mntmQuitter);
 		contentPane = new JPanel();
@@ -187,9 +187,9 @@ public class jfCommandes extends JFrame {
 		JButton btnCommandesExistantes = new JButton("Commandes existantes");
 		btnCommandesExistantes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				// TODO ouvrir nouvelle fen cmde existantes;
-				
+
 			}
 		});
 		btnCommandesExistantes
@@ -490,9 +490,9 @@ public class jfCommandes extends JFrame {
 				} else {
 					JOptionPane.showMessageDialog(null, "Veuillez renseigner une quantité svp !");
 				}
-				
+
 				panel_3.setVisible(true);
-				
+
 			}
 		});
 
@@ -568,13 +568,12 @@ public class jfCommandes extends JFrame {
 					ArtCom obj = new ArtCom(-1, idCmde, Integer.parseInt(table.getValueAt(i, 0).toString()),
 							Integer.parseInt(table.getValueAt(i, 4).toString()));
 
-					
 					artComDao.CreateArticleFromCommande(obj);
 
 				}
-				
-				JOptionPane.showMessageDialog(null,  "Commande ajoutée en base !");
-				
+
+				JOptionPane.showMessageDialog(null, "Commande ajoutée en base !");
+
 				jfCommandes frame = new jfCommandes();
 				frame.setVisible(true);
 				dispose();
