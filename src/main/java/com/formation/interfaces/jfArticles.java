@@ -34,6 +34,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class jfArticles extends JFrame {
 
@@ -77,6 +79,17 @@ public class jfArticles extends JFrame {
 
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
+		
+		JMenu mnNewMenu = new JMenu("New menu");
+		menuBar.add(mnNewMenu);
+		
+		JMenuItem mntmQuitter = new JMenuItem("Quitter");
+		mntmQuitter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		mnNewMenu.add(mntmQuitter);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -89,6 +102,11 @@ public class jfArticles extends JFrame {
 		contentPane.add(panel);
 
 		JButton btnAcceuil = new JButton("Acceuil");
+		btnAcceuil.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		btnAcceuil.setContentAreaFilled(false);
 		btnAcceuil.setPressedIcon(new ImageIcon(jfArticles.class.getResource("/Images/gestion/Home-48-actif.png")));
 		btnAcceuil.setIcon(new ImageIcon(jfArticles.class.getResource("/Images/gestion/Home-48.png")));
@@ -234,7 +252,7 @@ public class jfArticles extends JFrame {
 
 		JButton btnSupprimer = new JButton("Supprimer");
 		btnSupprimer.setEnabled(false);
-		
+
 		btnSupprimer.setRolloverIcon(
 				new ImageIcon(jfArticles.class.getResource("/Images/gestion/Garbage-Open-48-actif.png")));
 		btnSupprimer.setIcon(new ImageIcon(jfArticles.class.getResource("/Images/gestion/Garbage-Open-48.png")));
@@ -247,7 +265,7 @@ public class jfArticles extends JFrame {
 		panel_1.add(btnSupprimer);
 
 		JButton btnEffacer = new JButton("Effacer");
-		
+
 		btnEffacer.setRolloverIcon(new ImageIcon(jfArticles.class.getResource("/Images/gestion/Cancel-48-actif.png")));
 		btnEffacer.setIcon(new ImageIcon(jfArticles.class.getResource("/Images/gestion/Cancel-48.png")));
 		btnEffacer.setForeground(Color.BLACK);
@@ -259,7 +277,7 @@ public class jfArticles extends JFrame {
 		panel_1.add(btnEffacer);
 
 		JPanel panel_2 = new JPanel();
-		
+
 		panel_2.setBounds(226, 221, 568, 330);
 		contentPane.add(panel_2);
 		panel_2.setLayout(null);
@@ -269,7 +287,6 @@ public class jfArticles extends JFrame {
 		panel_2.add(scrollPane);
 
 		table = new JTable();
-		
 
 		table.setBorder(new LineBorder(new Color(0, 0, 0)));
 		Object[][] tableData = null;
@@ -332,20 +349,25 @@ public class jfArticles extends JFrame {
 				btnModifier.setEnabled(true);
 				btnSupprimer.setEnabled(true);
 			}
-			
-			
+
 		});
-		
-		
+
 		// ----------------------------------------------- AJOUT EN BASE D'UN ARTICLE
 		// -----------------------
 
 		btnAjouter.addActionListener(new ActionListener() {
 			Article art = null;
-			
+
 			public void actionPerformed(ActionEvent arg0) {
 				if (textFieldCode.isEditable()) {
-					art = new Article(-1, textFieldCode.getText(), textFieldDesign.getText(),
+					
+					if(textFieldQte.getText().equals(""))
+						JOptionPane.showMessageDialog(null, "Renseignez une quantité de l'article svp.");
+					else if(textFieldPrix.getText().equals(""))
+						JOptionPane.showMessageDialog(null, "Renseignez un prix pour l'article svp.");
+					else{
+						art = new Article(-1, textFieldCode.getText(), textFieldDesign.getText(),
+					
 							Double.parseDouble(textFieldPrix.getText()), Integer.parseInt(textFieldQte.getText()),
 							textFieldCategorie.getText());
 
@@ -359,25 +381,25 @@ public class jfArticles extends JFrame {
 
 						// on rajoute la ligne dans le tableau
 						tblModel.addRow(tableData);
-						table.setValueAt(art.getIdArticle(), tblModel.getRowCount()-1, 0);
-						table.setValueAt(art.getCode(), tblModel.getRowCount()-1, 1);
-						table.setValueAt(art.getCategorie(), tblModel.getRowCount()-1, 2);
-						table.setValueAt(art.getDescription(), tblModel.getRowCount()-1, 3);
-						table.setValueAt(art.getQuantite(), tblModel.getRowCount()-1, 4);
-						table.setValueAt(art.getPrixHT(), tblModel.getRowCount()-1, 5);
-						
+						table.setValueAt(art.getIdArticle(), tblModel.getRowCount() - 1, 0);
+						table.setValueAt(art.getCode(), tblModel.getRowCount() - 1, 1);
+						table.setValueAt(art.getCategorie(), tblModel.getRowCount() - 1, 2);
+						table.setValueAt(art.getDescription(), tblModel.getRowCount() - 1, 3);
+						table.setValueAt(art.getQuantite(), tblModel.getRowCount() - 1, 4);
+						table.setValueAt(art.getPrixHT(), tblModel.getRowCount() - 1, 5);
+
 					} else {
 						JOptionPane.showMessageDialog(null,
 								"Problème d'ajout en base. Contactez l'équipe de développement.");
 					}
-				} else {
+					}} else {
 
 					textFieldCategorie.setText("");
 					textFieldCode.setText("");
 					textFieldDesign.setText("");
 					textFieldPrix.setText("");
 					textFieldQte.setText("");
-					
+
 					textFieldCategorie.setEditable(true);
 					textFieldCode.setEditable(true);
 					textFieldDesign.setEditable(true);
@@ -385,9 +407,6 @@ public class jfArticles extends JFrame {
 					textFieldQte.setEditable(true);
 
 				}
-
-
-				
 
 			}
 		});
@@ -430,52 +449,50 @@ public class jfArticles extends JFrame {
 
 			}
 		});
-		
-		
-		// -------------------------------------------- Appui sur le bouton effacer les champs 
-		
+
+		// -------------------------------------------- Appui sur le bouton effacer les
+		// champs
+
 		btnEffacer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				
+
 				textFieldCategorie.setText("");
 				textFieldCode.setText("");
 				textFieldDesign.setText("");
 				textFieldPrix.setText("");
 				textFieldQte.setText("");
-				
+
 				table.clearSelection();
-				
+
 				btnModifier.setEnabled(false);
 				btnSupprimer.setEnabled(false);
-				
+
 			}
 		});
-		
-		//-------------------------------------------- suppression en base + table
-		
+
+		// -------------------------------------------- suppression en base + table
+
 		btnSupprimer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int n =  JOptionPane.showConfirmDialog( null , "Voulez-vous supprimer cet article? \nIl vous sera impossible de faire marche arrière.");
-				
-				if(n==0)
-				if(dao.DeleteArticle(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString()))) {
-					JOptionPane.showMessageDialog(null,
-							"Suppression effectuée.");
-					
-					//table.remove(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString()));
-				
-					tblModel.removeRow(table.getSelectedRow());
-					
-				}else {
-					JOptionPane.showMessageDialog(null,
-							"Problème de modification en base. Contactez l'équipe de développement.");
-				}
-				
-				
+				int n = JOptionPane.showConfirmDialog(null,
+						"Voulez-vous supprimer cet article? \nIl vous sera impossible de faire marche arrière.");
+
+				if (n == 0)
+					if (dao.DeleteArticle(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString()))) {
+						JOptionPane.showMessageDialog(null, "Suppression effectuée.");
+
+						// table.remove(Integer.parseInt(table.getValueAt(table.getSelectedRow(),
+						// 0).toString()));
+
+						tblModel.removeRow(table.getSelectedRow());
+
+					} else {
+						JOptionPane.showMessageDialog(null,
+								"Problème de modification en base. Contactez l'équipe de développement.");
+					}
+
 			}
 		});
-		
-		
+
 	}
 }

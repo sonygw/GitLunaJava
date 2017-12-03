@@ -154,4 +154,23 @@ public class CommandeDAOSQL implements CommandeDAO {
 		return result;
 	}
 
+	@Override
+	public Commande SelectLastCommande() {
+		ResultSet result = null;
+		Commande commande = null;
+
+		try {
+			state = conn.createStatement();
+			result = state.executeQuery("SELECT * FROM commande ORDER BY idCommande DESC LIMIT 1 ");
+			result.next();
+			commande = new Commande(result.getInt("idCommande"), result.getString("ref"), result.getDouble("prixHT"),
+					result.getString("adresse"), result.getInt("idClient"), result.getString("date"),
+					result.getString("reglement"));
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return commande;
+	}
+
 }

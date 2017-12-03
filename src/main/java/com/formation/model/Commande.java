@@ -11,12 +11,13 @@ public class Commande {
 	private int idClient;
 	private String reglement;
 	private String date;
-	
+
 	public Commande() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Commande(int idCommande, String ref, double prixHT, String adresse, int idClient, String date, String reglement) {
+	public Commande(int idCommande, String ref, double prixHT, String adresse, int idClient, String date,
+			String reglement) {
 		super();
 		this.idCommande = idCommande;
 		this.ref = ref;
@@ -83,5 +84,4 @@ public class Commande {
 		this.date = date;
 	}
 
-		
 }

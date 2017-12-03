@@ -10,6 +10,7 @@ public interface CommandeDAO {
 	public ArrayList<Commande> SelectClientCommandes(int idclient);
 	public ArrayList<Commande> SelectCommandesArticles(int id);
 	public Commande SelectCommande(int id);
+	public Commande SelectLastCommande();
 	public boolean CreateCommande(Commande commande);
 	public boolean UpdateCommande(Commande commande, int id);
 	public boolean DeleteCommande(int id);
