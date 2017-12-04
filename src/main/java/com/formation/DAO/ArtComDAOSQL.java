@@ -23,7 +23,7 @@ public class ArtComDAOSQL implements ArtComDAO {
 	}
 
 	@Override
-	public ArrayList<ArtCom> SelectAllArticleFromCommande(int idCommande) {
+	public ArrayList<ArtCom> SelectAllArtComFromCommande(int idCommande) {
 		ResultSet result = null;
 		ArrayList<ArtCom> articles = new ArrayList<ArtCom>();
 
@@ -48,7 +48,7 @@ public class ArtComDAOSQL implements ArtComDAO {
 	}
 
 	@Override
-	public boolean DeleteArticleFromCommande(ArtCom obj) {
+	public boolean DeleteArtComFromCommande(ArtCom obj) {
 
 		boolean result = false;
 		try {
@@ -65,7 +65,7 @@ public class ArtComDAOSQL implements ArtComDAO {
 	}
 
 	@Override
-	public boolean UpdateArticleFromCommande(ArtCom obj, int idArtCom) {
+	public boolean UpdateArtComFromCommande(ArtCom obj, int idArtCom) {
 
 		boolean result = false;
 
@@ -84,7 +84,7 @@ public class ArtComDAOSQL implements ArtComDAO {
 	}
 
 	@Override
-	public boolean CreateArticleFromCommande(ArtCom obj) {
+	public boolean CreateArtComFromCommande(ArtCom obj) {
 		boolean result = false;
 
 		try {
@@ -99,6 +99,24 @@ public class ArtComDAOSQL implements ArtComDAO {
 		}
 
 		return result;
+	}
+
+	@Override
+	public boolean DeleteArtComFromIdCommande(int id) {
+	
+		boolean result = false;
+		try {
+			state = conn.createStatement();
+			state.executeUpdate("Delete from artCom where idCommande =" + id);
+			result = true;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return result;
+		
 	}
 
 }

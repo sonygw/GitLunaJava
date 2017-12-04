@@ -7,10 +7,11 @@ import com.formation.model.ArtCom;
 
 public interface ArtComDAO {
 
-	public ArrayList<ArtCom> SelectAllArticleFromCommande(int idCommande);
-	public boolean DeleteArticleFromCommande(ArtCom obj);
-	public boolean UpdateArticleFromCommande(ArtCom obj, int idArtCom);
-	public boolean CreateArticleFromCommande(ArtCom obj);
+	public ArrayList<ArtCom> SelectAllArtComFromCommande(int idCommande);
+	public boolean DeleteArtComFromCommande(ArtCom obj);
+	public boolean UpdateArtComFromCommande(ArtCom obj, int idArtCom);
+	public boolean CreateArtComFromCommande(ArtCom obj);
+	public boolean DeleteArtComFromIdCommande(int id);
 	
 	
 }
