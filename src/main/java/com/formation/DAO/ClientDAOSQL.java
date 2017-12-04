@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.formation.model.Client;
+import com.formation.model.Commande;
 
 /**
  * @author SDJ09
@@ -158,6 +159,25 @@ public class ClientDAOSQL implements ClientDAO {
 		}
 
 		return clients;
+	}
+
+	@Override
+	public Client SelectLastClient() {
+		ResultSet result = null;
+		Client client = null;
+
+		try {
+			state = conn.createStatement();
+			result = state.executeQuery("SELECT * FROM client ORDER BY idClient DESC LIMIT 1 ");
+			result.next();
+			client = new Client(result.getInt("idClient"), result.getString("nom"), result.getString("prenom"),
+					result.getString("mail"), result.getString("adresse"), result.getBoolean("carteFidel"),
+					result.getString("remarques"), result.getString("telephone"), result.getString("dateCrea"), result.getString("code"));
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return client;
 	}
 
 }

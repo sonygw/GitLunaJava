@@ -13,5 +13,6 @@ public interface ClientDAO {
 	public boolean DeleteClient(Client obj);
 	public boolean UpdateClient(Client obj, int id);
 	public boolean CreateClient(Client obj);
+	public Client SelectLastClient();
 	
 }
