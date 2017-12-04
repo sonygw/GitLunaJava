@@ -14,8 +14,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.Scrollbar;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.border.TitledBorder;
 
+import com.formation.DAO.ClientDAOSQL;
+import com.formation.model.Article;
+import com.formation.model.Client;
+import com.formation.model.Commande;
+import com.formation.utilitaires.ConnexionJDBC;
 import com.formation.utilitaires.mesBoutons;
 
 import javax.swing.JButton;
@@ -24,21 +30,24 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.awt.Dimension;
 import javax.swing.UIManager;
 import javax.swing.JFormattedTextField;
 
 public class jpClientsAjout extends JPanel {
-	private JTextField fixe;
-	private JTextField prenom;
-	private JTextField adresse;
-	private JTextField code;
-	private JTextField nom;
-	private JTextField mobile;
-	private JTextField textField;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	private JTextField TxtFiel_CodePostal;
+	private JTextField TxtField_Ville;
+	private JTextField TxtField_Adresse;
+	private JTextField TxtField_code;
+	private JTextField TxtField_Prenom;
+	private JTextField TxtField_Nom;
+	private JTextField textField_Fixe;
+	private JTextField textField_Mobile;
+	private JTextField textField_email;
+	private JTextField textField_remarques;
 	private jfClients frame;
 
 	/**
@@ -46,6 +55,8 @@ public class jpClientsAjout extends JPanel {
 	 */
 	
 	public jpClientsAjout(jfClients jfc) {
+		
+		ClientDAOSQL dao = new ClientDAOSQL(ConnexionJDBC.getInstance());
 		
 		this.frame = jfc;
 		setMinimumSize(new Dimension(790, 590));
@@ -55,9 +66,9 @@ public class jpClientsAjout extends JPanel {
 		panel.setBackground(new Color(173, 216, 230));
 		panel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Clients", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		
-		code = new JTextField();
-		code.setEnabled(false);
-		code.setColumns(10);
+		TxtField_code = new JTextField();
+		TxtField_code.setEnabled(false);
+		TxtField_code.setColumns(10);
 		
 		JLabel label_7 = new JLabel("Cr\u00E9\u00E9 le ");
 		
@@ -66,8 +77,8 @@ public class jpClientsAjout extends JPanel {
 		
 		JLabel label_6 = new JLabel("Code");
 		
-		JFormattedTextField formattedTextField = new JFormattedTextField();
-		formattedTextField.setEnabled(false);
+		JFormattedTextField formattedTextField_date = new JFormattedTextField();
+		formattedTextField_date.setEnabled(false);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -75,11 +86,11 @@ public class jpClientsAjout extends JPanel {
 					.addGap(97)
 					.addComponent(label_6, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(code, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
+					.addComponent(TxtField_code, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(label_7, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(formattedTextField, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
+					.addComponent(formattedTextField_date, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(chckbxCarteDeFidlit)
 					.addContainerGap(10, Short.MAX_VALUE))
@@ -87,12 +98,12 @@ public class jpClientsAjout extends JPanel {
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-					.addComponent(code, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(TxtField_code, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addComponent(label_6))
 				.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 					.addComponent(label_7)
 					.addComponent(chckbxCarteDeFidlit)
-					.addComponent(formattedTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addComponent(formattedTextField_date, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 		);
 		panel.setLayout(gl_panel);
 		
@@ -139,18 +150,18 @@ public class jpClientsAjout extends JPanel {
 					.addContainerGap(286, Short.MAX_VALUE))
 		);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
+		textField_remarques = new JTextField();
+		textField_remarques.setColumns(10);
 		GroupLayout gl_panel_4 = new GroupLayout(panel_4);
 		gl_panel_4.setHorizontalGroup(
 			gl_panel_4.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_4.createSequentialGroup()
-					.addComponent(textField_4, GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE)
+					.addComponent(textField_remarques, GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE)
 					.addContainerGap())
 		);
 		gl_panel_4.setVerticalGroup(
 			gl_panel_4.createParallelGroup(Alignment.LEADING)
-				.addComponent(textField_4, GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+				.addComponent(textField_remarques, GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
 		);
 		panel_4.setLayout(gl_panel_4);
 		
@@ -160,14 +171,14 @@ public class jpClientsAjout extends JPanel {
 		
 		JLabel lblEmail = new JLabel("Email");
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		textField_Fixe = new JTextField();
+		textField_Fixe.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
+		textField_Mobile = new JTextField();
+		textField_Mobile.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
+		textField_email = new JTextField();
+		textField_email.setColumns(10);
 		GroupLayout gl_panel_3 = new GroupLayout(panel_3);
 		gl_panel_3.setHorizontalGroup(
 			gl_panel_3.createParallelGroup(Alignment.LEADING)
@@ -179,12 +190,12 @@ public class jpClientsAjout extends JPanel {
 					.addGap(28)
 					.addGroup(gl_panel_3.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_3.createSequentialGroup()
-							.addComponent(textField, GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+							.addComponent(textField_Fixe, GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
 							.addGap(12)
-							.addComponent(label_3)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 305, GroupLayout.PREFERRED_SIZE))
-						.addComponent(textField_3, GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE))
+							.addComponent(label_3, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(textField_Mobile, GroupLayout.PREFERRED_SIZE, 305, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textField_email, GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		gl_panel_3.setVerticalGroup(
@@ -193,13 +204,13 @@ public class jpClientsAjout extends JPanel {
 					.addContainerGap()
 					.addGroup(gl_panel_3.createParallelGroup(Alignment.BASELINE)
 						.addComponent(label_2)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textField_Fixe, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textField_Mobile, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(label_3))
 					.addPreferredGap(ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
 					.addGroup(gl_panel_3.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblEmail)
-						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textField_email, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
 		panel_3.setLayout(gl_panel_3);
@@ -208,26 +219,26 @@ public class jpClientsAjout extends JPanel {
 		
 		JLabel label_1 = new JLabel("Nom");
 		
-		nom = new JTextField();
-		nom.setColumns(10);
+		TxtField_Prenom = new JTextField();
+		TxtField_Prenom.setColumns(10);
 		
-		mobile = new JTextField();
-		mobile.setColumns(10);
+		TxtField_Nom = new JTextField();
+		TxtField_Nom.setColumns(10);
 		
 		JLabel label_8 = new JLabel("Adresse");
 		
-		adresse = new JTextField();
-		adresse.setColumns(10);
+		TxtField_Adresse = new JTextField();
+		TxtField_Adresse.setColumns(10);
 		
 		JLabel lblCodePostal = new JLabel("Code postal");
 		
-		fixe = new JTextField();
-		fixe.setColumns(10);
+		TxtFiel_CodePostal = new JTextField();
+		TxtFiel_CodePostal.setColumns(10);
 		
 		JLabel lblVille = new JLabel("Ville");
 		
-		prenom = new JTextField();
-		prenom.setColumns(10);
+		TxtField_Ville = new JTextField();
+		TxtField_Ville.setColumns(10);
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(
 			gl_panel_2.createParallelGroup(Alignment.TRAILING)
@@ -239,19 +250,19 @@ public class jpClientsAjout extends JPanel {
 						.addComponent(label_8, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(adresse)
+						.addComponent(TxtField_Adresse)
 						.addGroup(gl_panel_2.createSequentialGroup()
-							.addComponent(fixe, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+							.addComponent(TxtFiel_CodePostal, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
 							.addGap(190)
 							.addComponent(lblVille)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(prenom))
+							.addComponent(TxtField_Ville))
 						.addGroup(gl_panel_2.createSequentialGroup()
-							.addComponent(nom, GroupLayout.PREFERRED_SIZE, 283, GroupLayout.PREFERRED_SIZE)
+							.addComponent(TxtField_Prenom, GroupLayout.PREFERRED_SIZE, 283, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
 							.addComponent(label_1)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(mobile, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(TxtField_Nom, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		gl_panel_2.setVerticalGroup(
@@ -259,19 +270,19 @@ public class jpClientsAjout extends JPanel {
 				.addGroup(gl_panel_2.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
-						.addComponent(nom, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(mobile, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(TxtField_Prenom, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(TxtField_Nom, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(label_1)
 						.addComponent(label))
 					.addGap(18)
 					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
 						.addComponent(label_8)
-						.addComponent(adresse, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(TxtField_Adresse, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
-						.addComponent(fixe, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(TxtFiel_CodePostal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblVille)
-						.addComponent(prenom, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(TxtField_Ville, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblCodePostal))
 					.addContainerGap(13, Short.MAX_VALUE))
 		);
@@ -291,7 +302,7 @@ public class jpClientsAjout extends JPanel {
 		btnExport.setIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Data-Export-48.png")));
 		btnExport.setBorderPainted(false);
 		btnExport.setContentAreaFilled(false);
-		
+		// retour vers la fenêtre de gestion clients
 		JButton btnNewButton_1 = new JButton("Annuler");
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
@@ -329,6 +340,11 @@ public class jpClientsAjout extends JPanel {
 		btnClients.setIcon(new ImageIcon(jpClientsAjout.class.getResource("/Images/gestion/client/User-Add-64.png")));
 		
 		JButton btnSauvegarder = new JButton("Sauvegarder");
+		btnSauvegarder.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
 		btnSauvegarder.setFocusable(false);
 		btnSauvegarder.setBorder(null);
 		btnSauvegarder.setContentAreaFilled(false);
@@ -372,6 +388,49 @@ public class jpClientsAjout extends JPanel {
 		);
 		panel_1.setLayout(gl_panel_1);
 		setLayout(groupLayout);
+		
+	//	--------------------------------------------------------Traitement métier--------------------------------------------------------------
+		
+		String codecli = "ARTFRA" + (dao.SelectLastClient().getIdClient() + 1);
+		
 
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String date = sdf.format(new Date());
+		TxtField_code.setText(codecli);
+		formattedTextField_date.setText(date);
+	
+		// Ajout d'un client en base
+		btnSauvegarder.addActionListener(new ActionListener() {
+		
+			Client cli = null;
+			public void actionPerformed(ActionEvent arg0) {
+				
+			
+
+					if (textField_email.getText().isEmpty() || textField_Fixe.getText().isEmpty() || textField_Mobile.getText().isEmpty()||textField_remarques.getText().isEmpty()
+							||TxtFiel_CodePostal.getText().isEmpty()||TxtField_Adresse.getText().isEmpty()||TxtField_code.getText().isEmpty()||
+							TxtField_Nom.getText().isEmpty()||TxtField_Prenom.getText().isEmpty()||TxtField_Ville.getText().isEmpty() ||
+							formattedTextField_date.getText().isEmpty()) {
+						JOptionPane.showMessageDialog(null,
+								"Un des champs est vide. \nMerci de remplir le formulaire convenablement");
+						
+					} else {
+						cli = new Client(-1, TxtField_Nom.getText(), TxtField_Prenom.getText(), textField_email.getText(), TxtField_Adresse.getText(), 
+								chckbxCarteDeFidlit.isSelected(), textField_Mobile.getText(), textField_remarques.getText(), formattedTextField_date.getText(), TxtField_code.getText());
+						cli.setCode(codecli);
+						cli.setDate(date);
+						if (dao.CreateClient(cli)) {
+							JOptionPane.showMessageDialog(null, "Client correctement ajouté.");
+							jpClients annule = new jpClients(jfc);
+							mesBoutons annuler = new mesBoutons();
+							annuler.setFenetre(frame);
+						annuler.changerPanneau(annule, "Gestion des clients");
+					}
+					}
+					
+
+			}
+			});
+			
 	}
 }

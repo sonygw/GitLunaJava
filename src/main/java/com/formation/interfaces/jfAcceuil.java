@@ -22,6 +22,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Toolkit;
 
 public class jfAcceuil extends JFrame {
 
@@ -47,6 +48,7 @@ public class jfAcceuil extends JFrame {
 	 * Create the frame.
 	 */
 	public jfAcceuil() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(jfAcceuil.class.getResource("/Images/Moon-32.png")));
 		setResizable(false);
 		setMinimumSize(new Dimension(800, 600));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

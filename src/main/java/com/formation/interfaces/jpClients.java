@@ -443,20 +443,27 @@ public class jpClients extends JPanel {
 		btnSupprimer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int n = JOptionPane.showConfirmDialog(null,
-						"Voulez-vous supprimer cet article ? \nIl vous sera impossible de faire marche arrière.");
+						"Voulez-vous supprimer ce client ? \nIl vous sera impossible de faire marche arrière.");
 
 				if (n == 0)
 					if (dao.DeleteClient(dao.SelectClient(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString())))) {
 						JOptionPane.showMessageDialog(null, "Suppression effectuée.");
 
-						// table.remove(Integer.parseInt(table.getValueAt(table.getSelectedRow(),
-						// 0).toString()));
-
 						tblModel.removeRow(table.getSelectedRow());
+						textField_adresse.setText("");
+						textField_code.setText("");
+						textField_date.setText("");
+						textField_email.setText("");
+						textField_fixe.setText("");
+						textField_mobile.setText("");
+						textField_nom.setText("");
+						textField_prenom.setText("");
+						textField_remarques.setText("");
 
 					} else {
 						JOptionPane.showMessageDialog(null,
-								"Ce client a au moins une commande en cours, il n'est pas possible de le supprimer. \n Merci de supprimer les commandes associées à ce client");
+								"Ce client a au moins une commande en cours, il n'est pas possible de le supprimer. "
+								+ "\nMerci de supprimer les commandes associées à ce client");
 					}
 
 			}
