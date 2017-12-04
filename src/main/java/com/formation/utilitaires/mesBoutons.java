@@ -1,6 +1,5 @@
 package com.formation.utilitaires;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JPanel;
 
 import com.formation.interfaces.jfClients;

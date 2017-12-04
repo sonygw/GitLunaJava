@@ -42,7 +42,7 @@ public class ClientDAOSQL implements ClientDAO {
 			result.next();
 			resultat = new Client(result.getInt("idClient"), result.getString("nom"), result.getString("prenom"),
 					result.getString("mail"), result.getString("adresse"), result.getBoolean("carteFidel"),
-					result.getString("remarques"), result.getString("telephone"), result.getString("dateCrea"), result.getString("code"));
+				 result.getString("telephone"),result.getString("remarques"), result.getString("dateCrea"), result.getString("code"));
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
