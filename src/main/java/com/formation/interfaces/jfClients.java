@@ -65,9 +65,9 @@ public class jfClients extends JFrame {
 		);
 		contentPane.setLayout(gl_contentPane);
 //		
-//		jpClients cli = new jpClients();
-//	cli.setBounds(0, 0, 700, 600);      //ajout de JPanel dans JFrame
-//	getContentPane().add(cli);
+		jpClients cli = new jpClients();
+	cli.setBounds(0, 0, 790, 590);      //ajout de JPanel dans JFrame
+	getContentPane().add(cli);
 	
 	}
 }

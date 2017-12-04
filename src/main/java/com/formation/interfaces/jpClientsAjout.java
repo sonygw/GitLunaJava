@@ -270,29 +270,33 @@ public class jpClientsAjout extends JPanel {
 		panel_2.setLayout(gl_panel_2);
 		
 		JButton btnImprimer = new JButton("Imprimer");
+		btnImprimer.setBorder(null);
 		btnImprimer.setRolloverIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Printer-48-actif.png")));
 		btnImprimer.setIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Printer-48.png")));
 		btnImprimer.setContentAreaFilled(false);
 		
 		JButton btnExport = new JButton("Export");
 		btnExport.setRolloverIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Data-Export-48-actif.png")));
-		btnExport.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		btnExport.setBorder(null);
 		btnExport.setIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Data-Export-48.png")));
 		btnExport.setBorderPainted(false);
 		btnExport.setContentAreaFilled(false);
 		
 		JButton btnNewButton_1 = new JButton("Annuler");
+		btnNewButton_1.setBorder(null);
 		btnNewButton_1.setRolloverIcon(new ImageIcon(jpClientsAjout.class.getResource("/Images/gestion/Cancel-48-actif.png")));
 		btnNewButton_1.setIcon(new ImageIcon(jpClientsAjout.class.getResource("/Images/gestion/Cancel-48.png")));
 		btnNewButton_1.setContentAreaFilled(false);
 		btnNewButton_1.setDefaultCapable(false);
 		
 		JButton btnAperu = new JButton("Aper\u00E7u");
+		btnAperu.setBorder(null);
 		btnAperu.setRolloverIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Preview-48-actif.png")));
 		btnAperu.setIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Preview-48.png")));
 		btnAperu.setContentAreaFilled(false);
 		
 		JButton btnClients = new JButton("Ajout");
+		btnClients.setBorder(null);
 		btnClients.setRolloverIcon(new ImageIcon(jpClientsAjout.class.getResource("/Images/gestion/client/User-Add-64.png")));
 		btnClients.setBackground(new Color(127, 255, 212));
 		btnClients.addActionListener(new ActionListener() {
@@ -303,36 +307,30 @@ public class jpClientsAjout extends JPanel {
 		btnClients.setIcon(new ImageIcon(jpClientsAjout.class.getResource("/Images/gestion/client/User-Add-64.png")));
 		
 		JButton btnSauvegarder = new JButton("Sauvegarder");
+		btnSauvegarder.setBorder(null);
 		btnSauvegarder.setContentAreaFilled(false);
 		btnSauvegarder.setRolloverIcon(new ImageIcon(jpClientsAjout.class.getResource("/Images/gestion/Save-48-actif.png")));
 		btnSauvegarder.setIcon(new ImageIcon(jpClientsAjout.class.getResource("/Images/gestion/Save-48.png")));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addComponent(btnClients)
-					.addContainerGap())
+			gl_panel_1.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel_1.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(btnSauvegarder)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(btnAperu, GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(btnImprimer, GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(btnExport, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-					.addContainerGap())
-				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addComponent(btnSauvegarder)
+							.addContainerGap(33, Short.MAX_VALUE))
+						.addComponent(btnAperu, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+						.addComponent(btnImprimer, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addComponent(btnExport, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+							.addContainerGap())
+						.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+						.addComponent(btnClients, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE)))
 		);
 		gl_panel_1.setVerticalGroup(
-			gl_panel_1.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
 					.addComponent(btnClients)
 					.addGap(18)
 					.addComponent(btnSauvegarder)
@@ -344,7 +342,7 @@ public class jpClientsAjout extends JPanel {
 					.addComponent(btnExport)
 					.addGap(70)
 					.addComponent(btnNewButton_1)
-					.addContainerGap(326, Short.MAX_VALUE))
+					.addContainerGap(261, Short.MAX_VALUE))
 		);
 		panel_1.setLayout(gl_panel_1);
 		setLayout(groupLayout);
