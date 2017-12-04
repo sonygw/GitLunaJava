@@ -11,6 +11,9 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.LineBorder;
+
+import com.formation.utilitaires.mesBoutons;
+
 import javax.swing.JTextField;
 import java.awt.Checkbox;
 import javax.swing.GroupLayout;
@@ -45,6 +48,7 @@ public class jfClients extends JFrame {
 	public jfClients() {
 		setMinimumSize(new Dimension(800, 600));
 		setResizable(false);
+				
 		setTitle("Gestion des Clients");
 		setBackground(Color.WHITE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(jfClients.class.getResource("/Images/Moon-32.png")));
@@ -64,10 +68,17 @@ public class jfClients extends JFrame {
 				.addGap(0, 395, Short.MAX_VALUE)
 		);
 		contentPane.setLayout(gl_contentPane);
-//		
-		jpClients cli = new jpClients();
+////		
+		jpClients cli = new jpClients(this);
 	cli.setBounds(0, 0, 790, 590);      //ajout de JPanel dans JFrame
-	getContentPane().add(cli);
-	
+mesBoutons x = new mesBoutons();
+x.setFenetre(this);
+x.changerPanneau(cli, "Gestion des clients");
+//	
 	}
+	
+	
+	
+	
+	
 }
