@@ -80,6 +80,11 @@ public class jfCommandesExist extends JFrame {
 		contentPane.add(panel);
 
 		JButton button_retour = new JButton("Retour");
+		button_retour.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		button_retour.setIcon(new ImageIcon(jfCommandesExist.class.getResource("/Images/gestion/Home-48.png")));
 		button_retour.setRolloverIcon(
 				new ImageIcon(jfCommandesExist.class.getResource("/Images/gestion/Home-48-actif.png")));

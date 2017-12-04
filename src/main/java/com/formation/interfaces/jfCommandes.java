@@ -188,7 +188,8 @@ public class jfCommandes extends JFrame {
 		btnCommandesExistantes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				// TODO ouvrir nouvelle fen cmde existantes;
+				jfCommandesExist frame = new jfCommandesExist();
+				frame.setVisible(true);
 
 			}
 		});
