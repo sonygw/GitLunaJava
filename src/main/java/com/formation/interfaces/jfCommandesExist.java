@@ -23,8 +23,6 @@ import javax.swing.table.DefaultTableModel;
 import com.formation.DAO.ArtComDAOSQL;
 import com.formation.DAO.ClientDAOSQL;
 import com.formation.DAO.CommandeDAOSQL;
-import com.formation.model.ArtCom;
-import com.formation.model.Article;
 import com.formation.model.Client;
 import com.formation.model.Commande;
 import com.formation.utilitaires.ConnexionJDBC;
