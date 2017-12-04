@@ -119,4 +119,20 @@ public class ArtComDAOSQL implements ArtComDAO {
 		
 	}
 
+	@Override
+	public boolean DeleteArtComFromIdArticle(int id) {
+		boolean result = false;
+		try {
+			state = conn.createStatement();
+			state.executeUpdate("Delete from artCom where idArticle =" + id);
+			result = true;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
 }

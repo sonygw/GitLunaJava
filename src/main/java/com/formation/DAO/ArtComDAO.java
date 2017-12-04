@@ -12,6 +12,5 @@ public interface ArtComDAO {
 	public boolean UpdateArtComFromCommande(ArtCom obj, int idArtCom);
 	public boolean CreateArtComFromCommande(ArtCom obj);
 	public boolean DeleteArtComFromIdCommande(int id);
-	
-	
+	public boolean DeleteArtComFromIdArticle(int id);
 }

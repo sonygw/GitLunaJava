@@ -25,6 +25,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import com.formation.DAO.ArtComDAOSQL;
 import com.formation.DAO.ArticleDAOSQL;
 import com.formation.model.Article;
 import com.formation.utilitaires.ConnexionJDBC;
@@ -69,6 +70,7 @@ public class jfArticles extends JFrame {
 	public jfArticles() {
 
 		ArticleDAOSQL dao = new ArticleDAOSQL(ConnexionJDBC.getInstance());
+		ArtComDAOSQL artComDao = new ArtComDAOSQL(ConnexionJDBC.getInstance());
 
 		setIconImage(Toolkit.getDefaultToolkit().getImage(jfArticles.class.getResource("/Images/Moon-32.png")));
 		setTitle("Gestion des articles");
@@ -479,6 +481,7 @@ public class jfArticles extends JFrame {
 						"Voulez-vous supprimer cet article? \nIl vous sera impossible de faire marche arrière.");
 
 				if (n == 0)
+					
 					if (dao.DeleteArticle(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString()))) {
 						JOptionPane.showMessageDialog(null, "Suppression effectuée.");
 
