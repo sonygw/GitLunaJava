@@ -100,7 +100,7 @@ public class ClientDAOSQL implements ClientDAO {
 
 		try {
 			state = conn.createStatement();
-			state.executeUpdate("Update client SET nom = '" + obj.getNom() + "', prenom = '" + obj.getPrenom()
+			state.executeUpdate("Update client SET code = '" + obj.getCode() + "' nom = '" + obj.getNom() + "', prenom = '" + obj.getPrenom()
 					+ "', mail = '" + obj.getEmail() + "', adresse = '" + obj.getAdresse() + "', carteFidel = "
 					+ obj.isCarteFidelite() + ", remarques = '" + obj.getRemarques() + "', telephone = '"
 					+ obj.getNumeroTelephone() + "', dateCrea = '" + obj.getDate() + "' where idClient = " + id + ";");
