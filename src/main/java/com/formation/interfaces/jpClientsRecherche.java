@@ -263,28 +263,29 @@ public class jpClientsRecherche extends JPanel {
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.TRAILING)
-				.addComponent(btnAperu, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-				.addComponent(btnImprimer, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+				.addComponent(btnAperu, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+				.addComponent(btnImprimer, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
 				.addGroup(gl_panel_1.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
 					.addContainerGap())
 				.addGroup(gl_panel_1.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(btnExport, GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+					.addComponent(btnExport, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
 					.addContainerGap())
 				.addGroup(gl_panel_1.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+					.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
 					.addContainerGap())
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addComponent(btnClients, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
-					.addGap(85))
+				.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(btnClients, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(25, Short.MAX_VALUE))
 		);
 		gl_panel_1.setVerticalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_1.createSequentialGroup()
+					.addContainerGap()
 					.addComponent(btnClients)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnNewButton)
@@ -296,7 +297,7 @@ public class jpClientsRecherche extends JPanel {
 					.addComponent(btnExport)
 					.addGap(56)
 					.addComponent(btnNewButton_1)
-					.addContainerGap(20, Short.MAX_VALUE))
+					.addContainerGap(33, Short.MAX_VALUE))
 		);
 		panel_1.setLayout(gl_panel_1);
 		
