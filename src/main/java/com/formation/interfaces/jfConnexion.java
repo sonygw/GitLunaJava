@@ -28,6 +28,7 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+import java.awt.event.KeyEvent;
 
 public class jfConnexion extends JFrame {
 
@@ -91,6 +92,7 @@ public class jfConnexion extends JFrame {
 		login.setColumns(10);
 
 		motdepasse = new JPasswordField();
+		
 		motdepasse.setBounds(103, 67, 227, 20);
 		panel.add(motdepasse);
 
@@ -111,6 +113,7 @@ public class jfConnexion extends JFrame {
 		panel.add(btnAnnuler);
 
 		JButton btnConnexion = new JButton("Connexion");
+		btnConnexion.setMnemonic(KeyEvent.VK_ENTER);
 		btnConnexion
 				.setRolloverIcon(new ImageIcon(jfConnexion.class.getResource("/Images/connection/Power-48-actif.png")));
 		btnConnexion.setContentAreaFilled(false);
@@ -156,6 +159,12 @@ public class jfConnexion extends JFrame {
 		btnAnnuler.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
+			}
+		});
+		
+		motdepasse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnConnexion.doClick();
 			}
 		});
 	}

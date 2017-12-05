@@ -29,6 +29,8 @@ import com.formation.utilitaires.Admin;
 import com.formation.utilitaires.ConnexionJDBC;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class jfCommandesExist extends JFrame {
 
@@ -67,6 +69,17 @@ public class jfCommandesExist extends JFrame {
 
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
+		
+		JMenu mnNewMenu = new JMenu("Fichier");
+		menuBar.add(mnNewMenu);
+		
+		JMenuItem mntmQuitter = new JMenuItem("Quitter");
+		mntmQuitter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			dispose();
+			}
+		});
+		mnNewMenu.add(mntmQuitter);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
