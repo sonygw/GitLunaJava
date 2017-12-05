@@ -28,6 +28,7 @@ import javax.swing.table.TableModel;
 import com.formation.DAO.ArtComDAOSQL;
 import com.formation.DAO.ArticleDAOSQL;
 import com.formation.model.Article;
+import com.formation.model.Client;
 import com.formation.utilitaires.Admin;
 import com.formation.utilitaires.ConnexionJDBC;
 import java.awt.event.MouseAdapter;
@@ -48,6 +49,7 @@ public class jfArticles extends JFrame {
 	private JTextField textFieldQte;
 	private JTextField textFieldPrix;
 	private JTable table;
+	private JTextField textField_Recherche;
 
 	/**
 	 * Launch the application.
@@ -251,7 +253,7 @@ public class jfArticles extends JFrame {
 		btnModifier.setBorder(null);
 		btnModifier.setBackground(Color.WHITE);
 		btnModifier.setBounds(144, 141, 123, 64);
-		//if(Admin.isAdmin())
+		// if(Admin.isAdmin())
 		panel_1.add(btnModifier);
 
 		JButton btnSupprimer = new JButton("Supprimer");
@@ -266,7 +268,7 @@ public class jfArticles extends JFrame {
 		btnSupprimer.setBorder(null);
 		btnSupprimer.setBackground(Color.WHITE);
 		btnSupprimer.setBounds(279, 141, 123, 64);
-		//if(Admin.isAdmin())
+		// if(Admin.isAdmin())
 		panel_1.add(btnSupprimer);
 
 		JButton btnEffacer = new JButton("Effacer");
@@ -288,7 +290,7 @@ public class jfArticles extends JFrame {
 		panel_2.setLayout(null);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 0, 568, 330);
+		scrollPane.setBounds(0, 0, 568, 291);
 		panel_2.add(scrollPane);
 
 		table = new JTable();
@@ -310,6 +312,16 @@ public class jfArticles extends JFrame {
 		table.getColumn("id").setMinWidth(0);
 		table.getColumn("id").setMaxWidth(0);
 		scrollPane.setViewportView(table);
+		
+		textField_Recherche = new JTextField();
+		
+		textField_Recherche.setBounds(392, 298, 114, 20);
+		panel_2.add(textField_Recherche);
+		textField_Recherche.setColumns(10);
+		
+		JLabel lblRecherche = new JLabel("Recherche :");
+		lblRecherche.setBounds(308, 300, 83, 16);
+		panel_2.add(lblRecherche);
 
 		// -------------------------------------------------------------------------------------------------------------------------------------------------
 		// ------------------------------------------------------------ Traitement à
@@ -401,7 +413,7 @@ public class jfArticles extends JFrame {
 
 					textFieldCategorie.setText("");
 					textFieldCode.setText("ARTFRA" + dao.SelectLastArticle().getIdArticle());
-					// 
+					//
 					textFieldDesign.setText("");
 					textFieldPrix.setText("");
 					textFieldQte.setText("");
@@ -481,24 +493,48 @@ public class jfArticles extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				int n = JOptionPane.showConfirmDialog(null,
 						"Voulez-vous supprimer cet article? \nIl vous sera impossible de faire marche arrière.");
+				if (n == 0) // delete les artCom
+					if (artComDao.DeleteArtComFromIdArticle(
+							Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString())))
+						if (dao.DeleteArticle(
+								Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString()))) {
+							JOptionPane.showMessageDialog(null, "Suppression effectuée.");
+							// on delete la ligne de la table
+							tblModel.removeRow(table.getSelectedRow());
 
-				if (n == 0)
-					
-					// delete les artCom
-					
-					if (artComDao.DeleteArtComFromIdArticle(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString())))
-					if (dao.DeleteArticle(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString()))) {
-						JOptionPane.showMessageDialog(null, "Suppression effectuée.");
+						} else {
+							JOptionPane.showMessageDialog(null,
+									"Problème de modification en base. Contactez l'équipe de développement.");
+						}
 
-						
+			}
+		});
+		
+		
+		// -------------------------------------------------- Recherche un mot 
+		
+		textField_Recherche.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				ArrayList<Article> listArt = dao.SelectArticleByDesign(textField_Recherche.getText());
+				
+				int n = tblModel.getRowCount();
+				for (int i = n - 1; i >= 0; --i)
+					tblModel.removeRow(i);
+				
+				int o = 0;
+				for (Article a : listArt) {
+					tblModel.addRow(tableData);
+					table.setValueAt(a.getIdArticle(), o, 0);
+					table.setValueAt(a.getCode(), o, 1);
+					table.setValueAt(a.getCategorie(), o, 2);
+					table.setValueAt(a.getDescription(), o, 3);
+					table.setValueAt(a.getQuantite(), o, 4);
+					table.setValueAt(a.getPrixHT(), o, 5);
 
-						tblModel.removeRow(table.getSelectedRow());
-
-					} else {
-						JOptionPane.showMessageDialog(null,
-								"Problème de modification en base. Contactez l'équipe de développement.");
-					}
-
+					o++;
+				}
+				
 			}
 		});
 

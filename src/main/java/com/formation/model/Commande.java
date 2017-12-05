@@ -12,10 +12,23 @@ public class Commande {
 	private String reglement;
 	private String date;
 
+	/**
+	 * Constructeur vide
+	 */
 	public Commande() {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Contructeur avec paramètres
+	 * @param idCommande 
+	 * @param ref
+	 * @param prixHT
+	 * @param adresse
+	 * @param idClient
+	 * @param date
+	 * @param reglement
+	 */
 	public Commande(int idCommande, String ref, double prixHT, String adresse, int idClient, String date,
 			String reglement) {
 		super();

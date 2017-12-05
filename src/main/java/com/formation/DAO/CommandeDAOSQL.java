@@ -46,7 +46,7 @@ public class CommandeDAOSQL implements CommandeDAO {
 	}
 
 	@Override
-	public ArrayList<Commande> SelectClientCommandes(int idclient) {
+	public ArrayList<Commande> SelectCommandesClient(int idclient) {
 		ResultSet result = null;
 		Commande commande = null;
 		ArrayList<Commande> resultats = new ArrayList<Commande>();

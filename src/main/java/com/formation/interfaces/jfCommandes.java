@@ -363,7 +363,7 @@ public class jfCommandes extends JFrame {
 		table = new JTable();
 		Object[][] tableData = null;
 		DefaultTableModel tblModel = new DefaultTableModel(tableData,
-				new String[] { "id", "Code", "Categorie", "Designation", "Quantit\u00E9", "Prix Unitaire" , "QR"}) {
+				new String[] { "id", "Code", "Categorie", "Designation", "Quantit\u00E9", "Prix Unitaire", "QR" }) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				// all cells false
@@ -375,10 +375,10 @@ public class jfCommandes extends JFrame {
 
 		table.getColumn("id").setMinWidth(0);
 		table.getColumn("id").setMaxWidth(0);
-		
+
 		table.getColumn("QR").setMinWidth(0);
 		table.getColumn("QR").setMaxWidth(0);
-		
+
 		scrollPane.setViewportView(table);
 
 		JComboBox<String> comboBox_Articles = new JComboBox<String>();
@@ -448,11 +448,10 @@ public class jfCommandes extends JFrame {
 				cliEnCours = ListCli.get(comboBox_Client.getSelectedIndex());
 				comEnCours = new Commande();
 				Commande lastCommande = commandeDao.SelectLastCommande();
-				String nomCommande = "COMFRA" ;
+				String nomCommande = "COMFRA";
 				if (!lastCommande.equals(null)) {
-				nomCommande += (lastCommande.getIdCommande() + 1);
-				}else
-				{
+					nomCommande += (lastCommande.getIdCommande() + 1);
+				} else {
 					nomCommande += 1;
 				}
 				comEnCours.setRef(nomCommande);
@@ -492,23 +491,22 @@ public class jfCommandes extends JFrame {
 		// ------------------------------------------------ Ajout d'un nouvel article
 		// dans le tableau + MàJ du prix
 
-		
-		
 		button_add.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent e) {
 
 				if (!(textField_QteArtic.getText().equals(""))) {
-					
+
 					tblModel.addRow(tableData);
 					table.setValueAt(artEnCours.getIdArticle(), tblModel.getRowCount() - 1, 0);
 					table.setValueAt(artEnCours.getCode(), tblModel.getRowCount() - 1, 1);
 					table.setValueAt(artEnCours.getCategorie(), tblModel.getRowCount() - 1, 2);
 					table.setValueAt(artEnCours.getDescription(), tblModel.getRowCount() - 1, 3);
 					table.setValueAt(textField_QteArtic.getText(), tblModel.getRowCount() - 1, 4);
-					table.setValueAt(artEnCours.getPrixHT(), tblModel.getRowCount() - 1, 5);				
-					table.setValueAt((artEnCours.getQuantite() - Integer.parseInt(textField_QteArtic.getText()) ), tblModel.getRowCount() - 1, 6);				
-					
-					
+					table.setValueAt(artEnCours.getPrixHT(), tblModel.getRowCount() - 1, 5);
+					table.setValueAt((artEnCours.getQuantite() - Integer.parseInt(textField_QteArtic.getText())),
+							tblModel.getRowCount() - 1, 6);
+
 					textField_PrixTotal.setText(Double.toString(Double.parseDouble(textField_PrixTotal.getText())
 							+ (artEnCours.getPrixHT() * Integer.parseInt(textField_QteArtic.getText()))));
 
@@ -528,7 +526,7 @@ public class jfCommandes extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-			button_del.setEnabled(true);
+				button_del.setEnabled(true);
 			}
 
 		});
@@ -594,11 +592,12 @@ public class jfCommandes extends JFrame {
 
 					// on récupere l'article qu'on a dans la commande
 					artEnCours = articleDao.SelectArticleById(Integer.parseInt(table.getValueAt(i, 0).toString()));
-					// on update la quantité 
-					artEnCours.setQuantite(artEnCours.getQuantite() - Integer.parseInt(table.getValueAt(i, 4).toString()));
+					// on update la quantité
+					artEnCours.setQuantite(
+							artEnCours.getQuantite() - Integer.parseInt(table.getValueAt(i, 4).toString()));
 					// on update l'article en base
 					articleDao.UpdateArticle(artEnCours, artEnCours.getIdArticle());
-					
+
 				}
 
 				JOptionPane.showMessageDialog(null, "Commande ajoutée en base !");
