@@ -124,7 +124,7 @@ public class jpClientsRecherche extends JPanel {
 		textField_adresse.setBounds(68, 65, 538, 20);
 		panel.add(textField_adresse);
 		
-		JLabel lblTlphone = new JLabel("T\u00E9l\u00E9phone");
+		JLabel lblTlphone = new JLabel("T\u00E9l.");
 		lblTlphone.setBounds(10, 96, 64, 14);
 		panel.add(lblTlphone);
 		

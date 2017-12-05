@@ -30,6 +30,7 @@ import com.formation.DAO.ArticleDAOSQL;
 import com.formation.DAO.ClientDAOSQL;
 import com.formation.model.Article;
 import com.formation.model.Client;
+import com.formation.utilitaires.Admin;
 import com.formation.utilitaires.ConnexionJDBC;
 import com.formation.utilitaires.mesBoutons;
 
@@ -79,8 +80,8 @@ public class jpClients extends JPanel {
 					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE))
+						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)
+						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -150,8 +151,8 @@ public class jpClients extends JPanel {
 		textField_adresse.setBounds(68, 65, 539, 20);
 		panel.add(textField_adresse);
 		
-		JLabel lblTlphone = new JLabel("T\u00E9l\u00E9phone");
-		lblTlphone.setBounds(11, 99, 64, 14);
+		JLabel lblTlphone = new JLabel("T\u00E9l.");
+		lblTlphone.setBounds(11, 99, 47, 17);
 		panel.add(lblTlphone);
 		
 		textField_telephone = new JTextField();
@@ -181,6 +182,7 @@ public class jpClients extends JPanel {
 		panel.add(textField_remarques);
 		
 		JButton btnNewButton = new JButton("Rechercher");
+		btnNewButton.setBounds(0, 136, 158, 48);
 	
 		btnNewButton.setFocusable(false);
 		btnNewButton.setBorderPainted(false);
@@ -201,6 +203,7 @@ public class jpClients extends JPanel {
 		});
 		
 		JButton btnAfficher = new JButton("Ajouter");
+		btnAfficher.setBounds(10, 76, 148, 49);
 		
 		btnAfficher.setFocusable(false);
 		btnAfficher.setBorder(null);
@@ -232,6 +235,7 @@ public class jpClients extends JPanel {
 		});
 		
 		JButton btnModifier = new JButton("Modifier");
+		btnModifier.setBounds(0, 190, 158, 48);
 		
 		
 		btnModifier.setFocusable(false);
@@ -241,6 +245,7 @@ public class jpClients extends JPanel {
 		btnModifier.setContentAreaFilled(false);
 		
 		JButton btnSupprimer = new JButton("Supprimer");
+		btnSupprimer.setBounds(0, 244, 168, 49);
 		btnSupprimer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -254,6 +259,7 @@ public class jpClients extends JPanel {
 		btnSupprimer.setContentAreaFilled(false);
 		
 		JButton btnImprimer = new JButton("Imprimer");
+		btnImprimer.setBounds(0, 353, 168, 48);
 		btnImprimer.setFocusable(false);
 		btnImprimer.setBorder(null);
 		btnImprimer.setRolloverIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Printer-48-actif.png")));
@@ -261,6 +267,7 @@ public class jpClients extends JPanel {
 		btnImprimer.setContentAreaFilled(false);
 		
 		JButton btnExport = new JButton("Export");
+		btnExport.setBounds(10, 407, 148, 93);
 		btnExport.setFocusable(false);
 		btnExport.setRolloverIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Data-Export-48-actif.png")));
 		btnExport.setBorder(null);
@@ -269,6 +276,7 @@ public class jpClients extends JPanel {
 		btnExport.setContentAreaFilled(false);
 		
 		JButton btnNewButton_1 = new JButton("Accueil");
+		btnNewButton_1.setBounds(10, 519, 148, 49);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				jfc.dispose();
@@ -282,6 +290,7 @@ public class jpClients extends JPanel {
 		btnNewButton_1.setDefaultCapable(false);
 		
 		JButton btnAperu = new JButton("Aper\u00E7u");
+		btnAperu.setBounds(0, 299, 168, 48);
 		btnAperu.setFocusable(false);
 		btnAperu.setBorder(null);
 		btnAperu.setRolloverIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/Preview-48-actif.png")));
@@ -289,6 +298,7 @@ public class jpClients extends JPanel {
 		btnAperu.setContentAreaFilled(false);
 		
 		JButton btnClients = new JButton("CLIENTS");
+		btnClients.setBounds(10, 0, 148, 65);
 		btnClients.setFocusable(false);
 		btnClients.setBorder(null);
 		btnClients.setRolloverIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/client/People-64-actif.png")));
@@ -299,58 +309,18 @@ public class jpClients extends JPanel {
 		});
 		btnClients.setContentAreaFilled(false);
 		btnClients.setIcon(new ImageIcon(jpClients.class.getResource("/Images/gestion/client/People-64-actif.png")));
-		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(btnAfficher, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-					.addContainerGap())
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addComponent(btnModifier, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-					.addContainerGap())
-				.addComponent(btnSupprimer, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-				.addComponent(btnAperu, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-				.addComponent(btnImprimer, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-					.addContainerGap())
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addComponent(btnClients, GroupLayout.PREFERRED_SIZE, 148, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-					.addContainerGap())
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(btnExport, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-					.addContainerGap())
-		);
-		gl_panel_1.setVerticalGroup(
-			gl_panel_1.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addComponent(btnClients)
-					.addGap(11)
-					.addComponent(btnAfficher, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnNewButton)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnModifier, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnSupprimer)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnAperu, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnImprimer, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnExport, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-					.addComponent(btnNewButton_1)
-					.addGap(37))
-		);
-		panel_1.setLayout(gl_panel_1);
+		panel_1.setLayout(null);
+		panel_1.add(btnAfficher);
+		if(Admin.isAdmin())
+		panel_1.add(btnModifier);
+		if(Admin.isAdmin())
+		panel_1.add(btnSupprimer);
+		panel_1.add(btnAperu);
+		panel_1.add(btnImprimer);
+		panel_1.add(btnNewButton);
+		panel_1.add(btnClients);
+		panel_1.add(btnNewButton_1);
+		panel_1.add(btnExport);
 		
 		table = new JTable();
 		table.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -466,7 +436,7 @@ public class jpClients extends JPanel {
 				int numeroLigne = table.getSelectedRow();
 				if (numeroLigne<0) {
 					//si aucune ligne n'est sélectionnée
-					JOptionPane.showMessageDialog(null, "Sélectionner auparavant" + "la ligne à modifier");
+					JOptionPane.showMessageDialog(null, "Sélectionner auparavant " + "la ligne à modifier");
 				} else {
 					jpClientsModif cli = new jpClientsModif(jfc,dao.SelectClient(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString())));
 					mesBoutons modification = new mesBoutons();
