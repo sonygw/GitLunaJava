@@ -482,11 +482,13 @@ public class jfArticles extends JFrame {
 
 				if (n == 0)
 					
+					// delete les artCom
+					
+					if (artComDao.DeleteArtComFromIdArticle(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString())))
 					if (dao.DeleteArticle(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString()))) {
 						JOptionPane.showMessageDialog(null, "Suppression effectuée.");
 
-						// table.remove(Integer.parseInt(table.getValueAt(table.getSelectedRow(),
-						// 0).toString()));
+						
 
 						tblModel.removeRow(table.getSelectedRow());
 

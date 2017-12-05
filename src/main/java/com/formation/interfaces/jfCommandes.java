@@ -42,6 +42,8 @@ import java.util.Date;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
+
 import javax.swing.SwingConstants;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -439,7 +441,14 @@ public class jfCommandes extends JFrame {
 
 				cliEnCours = ListCli.get(comboBox_Client.getSelectedIndex());
 				comEnCours = new Commande();
-				String nomCommande = "COMFRA" + (commandeDao.SelectLastCommande().getIdCommande() + 1);
+				Commande lastCommande = commandeDao.SelectLastCommande();
+				String nomCommande = "COMFRA" ;
+				if (!lastCommande.equals(null)) {
+				nomCommande += (lastCommande.getIdCommande() + 1);
+				}else
+				{
+					nomCommande += 1;
+				}
 				comEnCours.setRef(nomCommande);
 				textField_NumCmde.setText(nomCommande);
 
@@ -491,7 +500,7 @@ public class jfCommandes extends JFrame {
 					table.setValueAt(artEnCours.getDescription(), tblModel.getRowCount() - 1, 3);
 					table.setValueAt(textField_QteArtic.getText(), tblModel.getRowCount() - 1, 4);
 					table.setValueAt(artEnCours.getPrixHT(), tblModel.getRowCount() - 1, 5);				
-					table.setValueAt((artEnCours.getQuantite() - Integer.parseInt(textField_QteArtic.getText()) ), tblModel.getRowCount() - 1, 5);				
+					table.setValueAt((artEnCours.getQuantite() - Integer.parseInt(textField_QteArtic.getText()) ), tblModel.getRowCount() - 1, 6);				
 					
 					
 					textField_PrixTotal.setText(Double.toString(Double.parseDouble(textField_PrixTotal.getText())
