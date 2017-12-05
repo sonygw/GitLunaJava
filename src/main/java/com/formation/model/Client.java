@@ -111,7 +111,10 @@ public class Client {
 	public void setDate(String date) {
 		this.date = date;
 	}
-
+/**
+ * Vérifie si un client dispose d'une carte de fidélité
+ * @return un string de réponse : oui si si carte et non sinon
+ */
 	public String fidel() {
 		String reponse ;
 		if (carteFidelite) 
