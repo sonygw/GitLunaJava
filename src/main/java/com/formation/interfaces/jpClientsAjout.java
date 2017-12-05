@@ -44,8 +44,7 @@ public class jpClientsAjout extends JPanel {
 	private JTextField TxtField_code;
 	private JTextField TxtField_Prenom;
 	private JTextField TxtField_Nom;
-	private JTextField textField_Fixe;
-	private JTextField textField_Mobile;
+	private JTextField textField_telephone;
 	private JTextField textField_email;
 	private JTextField textField_remarques;
 	private jfClients frame;
@@ -165,17 +164,12 @@ public class jpClientsAjout extends JPanel {
 		);
 		panel_4.setLayout(gl_panel_4);
 		
-		JLabel label_2 = new JLabel("Fixe");
-		
-		JLabel label_3 = new JLabel("Mobile");
+		JLabel lblTlphone = new JLabel("T\u00E9l\u00E9phone");
 		
 		JLabel lblEmail = new JLabel("Email");
 		
-		textField_Fixe = new JTextField();
-		textField_Fixe.setColumns(10);
-		
-		textField_Mobile = new JTextField();
-		textField_Mobile.setColumns(10);
+		textField_telephone = new JTextField();
+		textField_telephone.setColumns(10);
 		
 		textField_email = new JTextField();
 		textField_email.setColumns(10);
@@ -183,18 +177,13 @@ public class jpClientsAjout extends JPanel {
 		gl_panel_3.setHorizontalGroup(
 			gl_panel_3.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_3.createSequentialGroup()
-					.addGap(25)
+					.addContainerGap()
 					.addGroup(gl_panel_3.createParallelGroup(Alignment.LEADING)
-						.addComponent(label_2)
+						.addComponent(lblTlphone, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblEmail))
-					.addGap(28)
-					.addGroup(gl_panel_3.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_3.createSequentialGroup()
-							.addComponent(textField_Fixe, GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-							.addGap(12)
-							.addComponent(label_3, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_Mobile, GroupLayout.PREFERRED_SIZE, 305, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_panel_3.createParallelGroup(Alignment.TRAILING)
+						.addComponent(textField_telephone, GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
 						.addComponent(textField_email, GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE))
 					.addContainerGap())
 		);
@@ -203,14 +192,12 @@ public class jpClientsAjout extends JPanel {
 				.addGroup(gl_panel_3.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_panel_3.createParallelGroup(Alignment.BASELINE)
-						.addComponent(label_2)
-						.addComponent(textField_Fixe, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_Mobile, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(label_3))
+						.addComponent(textField_telephone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblTlphone))
 					.addPreferredGap(ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
 					.addGroup(gl_panel_3.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblEmail)
-						.addComponent(textField_email, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textField_email, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblEmail))
 					.addContainerGap())
 		);
 		panel_3.setLayout(gl_panel_3);
@@ -391,7 +378,7 @@ public class jpClientsAjout extends JPanel {
 		
 	//	--------------------------------------------------------Traitement métier--------------------------------------------------------------
 		
-		String codecli = "ARTFRA" + (dao.SelectLastClient().getIdClient() + 1);
+		String codecli = "CLIFRA" + (dao.SelectLastClient().getIdClient() + 1);
 		
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -406,8 +393,9 @@ public class jpClientsAjout extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				
 			
-
-					if (textField_email.getText().isEmpty() || textField_Fixe.getText().isEmpty() || textField_Mobile.getText().isEmpty()||textField_remarques.getText().isEmpty()
+						// Vérifie qu'aucun des champs du formulaire ne soit vide
+				
+					if (textField_email.getText().isEmpty() ||  textField_telephone.getText().isEmpty()||textField_remarques.getText().isEmpty()
 							||TxtFiel_CodePostal.getText().isEmpty()||TxtField_Adresse.getText().isEmpty()||TxtField_code.getText().isEmpty()||
 							TxtField_Nom.getText().isEmpty()||TxtField_Prenom.getText().isEmpty()||TxtField_Ville.getText().isEmpty() ||
 							formattedTextField_date.getText().isEmpty()) {
@@ -415,8 +403,8 @@ public class jpClientsAjout extends JPanel {
 								"Un des champs est vide. \nMerci de remplir le formulaire convenablement");
 						
 					} else {
-						cli = new Client(-1, TxtField_Nom.getText(), TxtField_Prenom.getText(), textField_email.getText(), TxtField_Adresse.getText(), 
-								chckbxCarteDeFidlit.isSelected(), textField_Mobile.getText(), textField_remarques.getText(), formattedTextField_date.getText(), TxtField_code.getText());
+						cli = new Client(-1, TxtField_Nom.getText(), TxtField_Prenom.getText(), textField_email.getText(), TxtField_Adresse.getText()+ " "+  TxtFiel_CodePostal.getText() + " "+ TxtField_Ville.getText(), 
+								chckbxCarteDeFidlit.isSelected(), textField_telephone.getText(), textField_remarques.getText(), formattedTextField_date.getText(), TxtField_code.getText());
 						cli.setCode(codecli);
 						cli.setDate(date);
 						if (dao.CreateClient(cli)) {

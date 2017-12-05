@@ -44,22 +44,20 @@ public class jpClients extends JPanel {
 	private JTextField textField_nom;
 	private JTextField textField_prenom;
 	private JTextField textField_adresse;
-	private JTextField textField_fixe;
-	private JTextField textField_mobile;
+	private JTextField textField_telephone;
 	private JTextField textField_email;
 	private JTextField textField_remarques;
-
 
 	/**
 	 * Create the panel.
 	 */
 
-	
-	
+	 
 	@SuppressWarnings("serial")
 	public jpClients(jfClients jfc) {
 		
 		ClientDAOSQL dao = new ClientDAOSQL(ConnexionJDBC.getInstance());
+		
 		
 		setMinimumSize(new Dimension(790, 590));
 		setBackground(new Color(173, 216, 230));
@@ -152,25 +150,15 @@ public class jpClients extends JPanel {
 		textField_adresse.setBounds(68, 65, 539, 20);
 		panel.add(textField_adresse);
 		
-		JLabel label_5 = new JLabel("Fixe");
-		label_5.setBounds(11, 99, 47, 14);
-		panel.add(label_5);
+		JLabel lblTlphone = new JLabel("T\u00E9l\u00E9phone");
+		lblTlphone.setBounds(11, 99, 54, 14);
+		panel.add(lblTlphone);
 		
-		textField_fixe = new JTextField();
-		textField_fixe.setEnabled(false);
-		textField_fixe.setColumns(10);
-		textField_fixe.setBounds(68, 96, 194, 20);
-		panel.add(textField_fixe);
-		
-		JLabel label_6 = new JLabel("Mobile");
-		label_6.setBounds(350, 99, 54, 14);
-		panel.add(label_6);
-		
-		textField_mobile = new JTextField();
-		textField_mobile.setEnabled(false);
-		textField_mobile.setColumns(10);
-		textField_mobile.setBounds(409, 96, 198, 20);
-		panel.add(textField_mobile);
+		textField_telephone = new JTextField();
+		textField_telephone.setEnabled(false);
+		textField_telephone.setColumns(10);
+		textField_telephone.setBounds(68, 96, 539, 20);
+		panel.add(textField_telephone);
 		
 		textField_email = new JTextField();
 		textField_email.setEnabled(false);
@@ -244,15 +232,7 @@ public class jpClients extends JPanel {
 		});
 		
 		JButton btnModifier = new JButton("Modifier");
-		btnModifier.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				jpClientsModif modifier = new jpClientsModif(jfc);
-				mesBoutons modification = new mesBoutons();
-				modification.setFenetre(frame);
-			modification.changerPanneau(modifier, "Modification des clients");
-			}
-		});
+		
 		
 		btnModifier.setFocusable(false);
 		btnModifier.setBorder(null);
@@ -397,6 +377,7 @@ public class jpClients extends JPanel {
 		
 	//	-------------------------------------------------Traitement métier----------------------------------------------------------------------
 		
+		// Création d'une liste qui permettra de récupérer les données des clients
 		ArrayList<Client> list = new ArrayList<Client>();
 
 		list = dao.SelectAllClients();
@@ -428,8 +409,7 @@ public class jpClients extends JPanel {
 				textField_nom.setText(cli.getNom());
 				textField_prenom.setText(cli.getPrenom());
 				textField_adresse.setText(cli.getAdresse());
-				textField_fixe.setText(cli.getNumeroTelephone());
-				textField_mobile.setText(cli.getNumeroTelephone());
+				textField_telephone.setText(cli.getNumeroTelephone());
 				textField_email.setText(cli.getEmail());
 				textField_remarques.setText(cli.getRemarques());
 				checkBox.setSelected(cli.isCarteFidelite());
@@ -454,8 +434,7 @@ public class jpClients extends JPanel {
 						textField_code.setText("");
 						textField_date.setText("");
 						textField_email.setText("");
-						textField_fixe.setText("");
-						textField_mobile.setText("");
+						textField_telephone.setText("");
 						textField_nom.setText("");
 						textField_prenom.setText("");
 						textField_remarques.setText("");
@@ -467,10 +446,38 @@ public class jpClients extends JPanel {
 					}
 
 			}
+	
 		});
 
-		
-		
-	}
-}
+//		-------------------------------------------- Modification d'un client sélectionné -------------------------------------
 	
+		
+		btnModifier.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				modification();
+				
+			}
+
+	
+			private void modification() {
+				int numeroLigne = table.getSelectedRow();
+				if (numeroLigne<0) {
+					//si aucune ligne n'est sélectionnée
+					JOptionPane.showMessageDialog(null, "Sélectionner auparavant" + "la ligne à modifier");
+				} else {
+					jpClientsModif cli = new jpClientsModif(jfc,dao.SelectClient(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString())));
+					mesBoutons modification = new mesBoutons();
+					modification.setFenetre(frame);
+				modification.changerPanneau(cli, "Modification des clients");
+			}
+			}
+		});
+		
+		;
+	}
+
+	
+}
