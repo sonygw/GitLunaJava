@@ -147,14 +147,14 @@ public class jpClientsRecherche extends JPanel {
 		panel.add(label_7);
 		
 		JLabel label_8 = new JLabel("Remarques");
-		label_8.setBounds(10, 189, 64, 14);
+		label_8.setBounds(10, 189, 85, 14);
 		panel.add(label_8);
 		
 		textField_remarques = new JTextField();
 		textField_remarques.setEditable(false);
 		textField_remarques.setEnabled(false);
 		textField_remarques.setColumns(10);
-		textField_remarques.setBounds(68, 165, 538, 63);
+		textField_remarques.setBounds(78, 165, 528, 63);
 		panel.add(textField_remarques);
 		
 		JPanel panel_2 = new JPanel();
