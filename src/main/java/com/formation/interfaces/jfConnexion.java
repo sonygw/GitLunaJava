@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.formation.DAO.UserDAOSQL;
 import com.formation.model.User;
+import com.formation.utilitaires.Admin;
 import com.formation.utilitaires.ConnexionJDBC;
 
 import javax.swing.JLabel;
@@ -135,7 +136,8 @@ public class jfConnexion extends JFrame {
 						if (pass.equals(list.get(i).getMotDePasse()))
 
 						{
-
+							new Admin(list.get(i).isAdmin());
+							
 							jfAcceuil accueil = new jfAcceuil();
 							accueil.setVisible(true);
 							dispose();

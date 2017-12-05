@@ -28,6 +28,7 @@ import javax.swing.table.TableModel;
 import com.formation.DAO.ArtComDAOSQL;
 import com.formation.DAO.ArticleDAOSQL;
 import com.formation.model.Article;
+import com.formation.utilitaires.Admin;
 import com.formation.utilitaires.ConnexionJDBC;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -250,6 +251,7 @@ public class jfArticles extends JFrame {
 		btnModifier.setBorder(null);
 		btnModifier.setBackground(Color.WHITE);
 		btnModifier.setBounds(144, 141, 123, 64);
+		if(Admin.isAdmin())
 		panel_1.add(btnModifier);
 
 		JButton btnSupprimer = new JButton("Supprimer");
@@ -264,6 +266,7 @@ public class jfArticles extends JFrame {
 		btnSupprimer.setBorder(null);
 		btnSupprimer.setBackground(Color.WHITE);
 		btnSupprimer.setBounds(279, 141, 123, 64);
+		if(Admin.isAdmin())
 		panel_1.add(btnSupprimer);
 
 		JButton btnEffacer = new JButton("Effacer");

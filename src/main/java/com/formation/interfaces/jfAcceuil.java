@@ -13,6 +13,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JMenu;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
+
+import com.formation.utilitaires.Admin;
+
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -258,6 +261,8 @@ public class jfAcceuil extends JFrame {
 		btnGraphs.setFocusable(false);
 		btnGraphs.setIcon(new ImageIcon(jfAcceuil.class.getResource("/Images/accueil/Diagram-128.png")));
 		btnGraphs.setBounds(228, 209, 135, 135);
+		
+		if(Admin.isAdmin())
 		corps.add(btnGraphs);
 	}
 }

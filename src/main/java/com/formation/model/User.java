@@ -1,13 +1,13 @@
 package com.formation.model;
 
 public class User {
-	
+
 	private int idUser;
 	private String nom;
 	private String login;
 	private String motDePasse;
 	private boolean admin;
-	
+
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
@@ -19,6 +19,7 @@ public class User {
 		this.login = login;
 		this.motDePasse = motDePasse;
 		this.admin = admin;
+		
 	}
 
 	public int getIdUser() {
@@ -61,5 +62,5 @@ public class User {
 		this.admin = admin;
 	}
 
-
+	
 }

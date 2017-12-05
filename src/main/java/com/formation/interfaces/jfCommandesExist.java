@@ -25,6 +25,7 @@ import com.formation.DAO.ClientDAOSQL;
 import com.formation.DAO.CommandeDAOSQL;
 import com.formation.model.Client;
 import com.formation.model.Commande;
+import com.formation.utilitaires.Admin;
 import com.formation.utilitaires.ConnexionJDBC;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -149,6 +150,7 @@ public class jfCommandesExist extends JFrame {
 		btnSupprimer.setBorder(null);
 		btnSupprimer.setBackground(Color.WHITE);
 		btnSupprimer.setBounds(9, 90, 120, 64);
+		if(Admin.isAdmin())
 		panel.add(btnSupprimer);
 
 		JScrollPane scrollPane = new JScrollPane();

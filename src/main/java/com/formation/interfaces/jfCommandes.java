@@ -29,6 +29,7 @@ import com.formation.model.ArtCom;
 import com.formation.model.Article;
 import com.formation.model.Client;
 import com.formation.model.Commande;
+import com.formation.utilitaires.Admin;
 import com.formation.utilitaires.ConnexionJDBC;
 
 import javax.swing.border.TitledBorder;
