@@ -172,13 +172,13 @@ public class jpClients extends JPanel {
 		panel.add(label_7);
 		
 		JLabel label_8 = new JLabel("Remarques");
-		label_8.setBounds(10, 189, 64, 14);
+		label_8.setBounds(10, 189, 97, 14);
 		panel.add(label_8);
 		
 		textField_remarques = new JTextField();
 		textField_remarques.setEnabled(false);
 		textField_remarques.setColumns(10);
-		textField_remarques.setBounds(68, 165, 539, 63);
+		textField_remarques.setBounds(78, 165, 529, 63);
 		panel.add(textField_remarques);
 		
 		JButton btnNewButton = new JButton("Rechercher");
@@ -371,6 +371,8 @@ public class jpClients extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
+				
+				
 				Client cli  = dao.SelectClient(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString()));
 
 				
@@ -383,7 +385,10 @@ public class jpClients extends JPanel {
 				textField_email.setText(cli.getEmail());
 				textField_remarques.setText(cli.getRemarques());
 				checkBox.setSelected(cli.isCarteFidelite());
-					
+				
+				if(Admin.isAdmin())
+					if(e.getClickCount()==2) 
+						btnModifier.doClick();
 			}
 
 		});
