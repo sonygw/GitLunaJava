@@ -8,15 +8,29 @@ import java.util.ArrayList;
 
 import com.formation.model.ArtCom;
 
+/**
+ * 
+ * @author Lou
+ *
+ */
 public class ArtComDAOSQL implements ArtComDAO {
 
 	Connection conn = null;
 	Statement state = null;
 
+	/**
+	 * constructeur vide
+	 */
 	public ArtComDAOSQL() {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * constructeur avec la connection
+	 * 
+	 * @param conn
+	 *            connexionJDBC
+	 */
 	public ArtComDAOSQL(Connection conn) {
 		super();
 		this.conn = conn;
@@ -72,7 +86,7 @@ public class ArtComDAOSQL implements ArtComDAO {
 		try {
 			state = conn.createStatement();
 			state.executeUpdate("Update artCom SET idCommande = " + obj.getIdArtCom() + ", idArticle = "
-					+ obj.getIdArticle() +"," + obj.getQuantite() + " where idArtCom = " + idArtCom);
+					+ obj.getIdArticle() + "," + obj.getQuantite() + " where idArtCom = " + idArtCom);
 			result = true;
 
 		} catch (SQLException e) {
@@ -103,7 +117,7 @@ public class ArtComDAOSQL implements ArtComDAO {
 
 	@Override
 	public boolean DeleteArtComFromIdCommande(int id) {
-	
+
 		boolean result = false;
 		try {
 			state = conn.createStatement();
@@ -116,7 +130,7 @@ public class ArtComDAOSQL implements ArtComDAO {
 		}
 
 		return result;
-		
+
 	}
 
 	@Override

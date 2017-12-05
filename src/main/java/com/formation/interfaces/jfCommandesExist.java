@@ -31,6 +31,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import java.awt.Toolkit;
 
 public class jfCommandesExist extends JFrame {
 
@@ -57,6 +58,8 @@ public class jfCommandesExist extends JFrame {
 	 * Create the frame.
 	 */
 	public jfCommandesExist() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(jfCommandesExist.class.getResource("/Images/Moon-32.png")));
+		setTitle("Affichage des commandes existantes");
 
 		CommandeDAOSQL commandeDao = new CommandeDAOSQL(ConnexionJDBC.getInstance());
 		ClientDAOSQL clientDao = new ClientDAOSQL(ConnexionJDBC.getInstance());
