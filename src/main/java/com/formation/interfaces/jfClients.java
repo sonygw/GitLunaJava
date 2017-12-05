@@ -48,7 +48,7 @@ public class jfClients extends JFrame {
 	public jfClients() {
 		setMinimumSize(new Dimension(800, 600));
 		setResizable(false);
-				
+
 		setTitle("Gestion des Clients");
 		setBackground(Color.WHITE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(jfClients.class.getResource("/Images/Moon-32.png")));
@@ -60,25 +60,17 @@ public class jfClients extends JFrame {
 		setContentPane(contentPane);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 628, Short.MAX_VALUE)
-		);
+				gl_contentPane.createParallelGroup(Alignment.LEADING).addGap(0, 628, Short.MAX_VALUE));
 		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 395, Short.MAX_VALUE)
-		);
+				gl_contentPane.createParallelGroup(Alignment.LEADING).addGap(0, 395, Short.MAX_VALUE));
 		contentPane.setLayout(gl_contentPane);
-////		
+		////
 		jpClients cli = new jpClients(this);
-	cli.setBounds(0, 0, 790, 590);      //ajout de JPanel dans JFrame
-mesBoutons x = new mesBoutons();
-x.setFenetre(this);
-x.changerPanneau(cli, "Gestion des clients");
-//	
+		cli.setBounds(0, 0, 790, 590); // ajout de JPanel dans JFrame
+		mesBoutons x = new mesBoutons();
+		x.setFenetre(this);
+		x.changerPanneau(cli, "Gestion des clients");
+		//
 	}
-	
-	
-	
-	
-	
+
 }
