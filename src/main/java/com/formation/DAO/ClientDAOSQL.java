@@ -147,7 +147,7 @@ public class ClientDAOSQL implements ClientDAO {
 
 		try {
 			state = conn.createStatement();
-			result = state.executeQuery("Select * from client where nom like '" + nom + "'");
+			result = state.executeQuery("Select * from client where nom like '" + nom + "%'");
 
 			while (result.next()) {
 				resultat = new Client(result.getInt("idClient"), result.getString("nom"), result.getString("prenom"),

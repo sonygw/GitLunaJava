@@ -164,7 +164,7 @@ public class jpClientsAjout extends JPanel {
 		);
 		panel_4.setLayout(gl_panel_4);
 		
-		JLabel lblTlphone = new JLabel("T\u00E9l\u00E9phone");
+		JLabel lblTlphone = new JLabel("T\u00E9l.");
 		
 		JLabel lblEmail = new JLabel("Email");
 		

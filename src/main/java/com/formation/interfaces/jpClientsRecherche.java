@@ -21,28 +21,35 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.awt.Dimension;
 import javax.swing.table.DefaultTableModel;
 
+import com.formation.DAO.ClientDAOSQL;
+import com.formation.model.Client;
+import com.formation.utilitaires.ConnexionJDBC;
 import com.formation.utilitaires.mesBoutons;
 
 public class jpClientsRecherche extends JPanel {
 	private JTable table;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
+	private JTextField textField_code;
+	private JTextField textField_date;
+	private JTextField textField_nom;
+	private JTextField textField_prenom;
+	private JTextField textField_adresse;
+	private JTextField textField_telephone;
+	private JTextField textField_email;
+	private JTextField textField_remarques;
 	private jfClients frame;
+	private JTextField textField_recherchenom;
 
 	/**
 	 * Create the panel.
 	 */
 	public jpClientsRecherche(jfClients jfc) {
+		
+		ClientDAOSQL dao = new ClientDAOSQL(ConnexionJDBC.getInstance());
+		
 		this.frame = jfc;
 		setMinimumSize(new Dimension(790, 590));
 		setBackground(new Color(173, 216, 230));
@@ -54,6 +61,7 @@ public class jpClientsRecherche extends JPanel {
 		panel_1.setBorder(null);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(173, 216, 230));
 		panel.setLayout(null);
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		
@@ -61,42 +69,45 @@ public class jpClientsRecherche extends JPanel {
 		label.setBounds(10, 11, 47, 14);
 		panel.add(label);
 		
-		textField = new JTextField();
-		textField.setEnabled(false);
-		textField.setColumns(10);
-		textField.setBounds(68, 8, 116, 20);
-		panel.add(textField);
+		textField_code = new JTextField();
+		textField_code.setEditable(false);
+		textField_code.setColumns(10);
+		textField_code.setBounds(68, 8, 116, 20);
+		panel.add(textField_code);
 		
 		JLabel label_1 = new JLabel("Cr\u00E9\u00E9 le ");
 		label_1.setBounds(209, 11, 60, 14);
 		panel.add(label_1);
 		
-		textField_1 = new JTextField();
-		textField_1.setEnabled(false);
-		textField_1.setColumns(10);
-		textField_1.setBounds(258, 8, 130, 20);
-		panel.add(textField_1);
+		textField_date = new JTextField();
+		textField_date.setEditable(false);
+		textField_date.setEnabled(false);
+		textField_date.setColumns(10);
+		textField_date.setBounds(258, 8, 130, 20);
+		panel.add(textField_date);
 		
-		JCheckBox checkBox = new JCheckBox("Carte de fid\u00E9lit\u00E9");
-		checkBox.setEnabled(false);
-		checkBox.setBounds(394, 7, 103, 23);
-		panel.add(checkBox);
+		JCheckBox checkBox_cartefidel = new JCheckBox("Carte de fid\u00E9lit\u00E9");
+		checkBox_cartefidel.setEnabled(false);
+		checkBox_cartefidel.setBounds(394, 7, 150, 23);
+		panel.add(checkBox_cartefidel);
 		
-		textField_2 = new JTextField();
-		textField_2.setEnabled(false);
-		textField_2.setColumns(10);
-		textField_2.setBounds(394, 37, 212, 20);
-		panel.add(textField_2);
+		textField_nom = new JTextField();
+		textField_nom.setEnabled(false);
+		textField_nom.setEditable(false);
+		textField_nom.setColumns(10);
+		textField_nom.setBounds(394, 37, 212, 20);
+		panel.add(textField_nom);
 		
 		JLabel label_2 = new JLabel("Nom");
 		label_2.setBounds(361, 40, 36, 14);
 		panel.add(label_2);
 		
-		textField_3 = new JTextField();
-		textField_3.setEnabled(false);
-		textField_3.setColumns(10);
-		textField_3.setBounds(68, 34, 188, 20);
-		panel.add(textField_3);
+		textField_prenom = new JTextField();
+		textField_prenom.setEditable(false);
+		textField_prenom.setEnabled(false);
+		textField_prenom.setColumns(10);
+		textField_prenom.setBounds(68, 34, 188, 20);
+		panel.add(textField_prenom);
 		
 		JLabel label_3 = new JLabel("Pr\u00E9nom");
 		label_3.setBounds(10, 37, 54, 14);
@@ -106,37 +117,30 @@ public class jpClientsRecherche extends JPanel {
 		label_4.setBounds(10, 68, 54, 14);
 		panel.add(label_4);
 		
-		textField_4 = new JTextField();
-		textField_4.setEnabled(false);
-		textField_4.setColumns(10);
-		textField_4.setBounds(68, 65, 538, 20);
-		panel.add(textField_4);
+		textField_adresse = new JTextField();
+		textField_adresse.setEditable(false);
+		textField_adresse.setEnabled(false);
+		textField_adresse.setColumns(10);
+		textField_adresse.setBounds(68, 65, 538, 20);
+		panel.add(textField_adresse);
 		
-		JLabel label_5 = new JLabel("Fixe");
-		label_5.setBounds(10, 99, 30, 14);
-		panel.add(label_5);
+		JLabel lblTlphone = new JLabel("T\u00E9l.");
+		lblTlphone.setBounds(10, 96, 64, 14);
+		panel.add(lblTlphone);
 		
-		textField_5 = new JTextField();
-		textField_5.setEnabled(false);
-		textField_5.setColumns(10);
-		textField_5.setBounds(68, 96, 194, 20);
-		panel.add(textField_5);
+		textField_telephone = new JTextField();
+		textField_telephone.setEditable(false);
+		textField_telephone.setEnabled(false);
+		textField_telephone.setColumns(10);
+		textField_telephone.setBounds(68, 96, 538, 20);
+		panel.add(textField_telephone);
 		
-		JLabel label_6 = new JLabel("Mobile");
-		label_6.setBounds(361, 99, 64, 14);
-		panel.add(label_6);
-		
-		textField_6 = new JTextField();
-		textField_6.setEnabled(false);
-		textField_6.setColumns(10);
-		textField_6.setBounds(394, 96, 212, 20);
-		panel.add(textField_6);
-		
-		textField_7 = new JTextField();
-		textField_7.setEnabled(false);
-		textField_7.setColumns(10);
-		textField_7.setBounds(68, 127, 538, 20);
-		panel.add(textField_7);
+		textField_email = new JTextField();
+		textField_email.setEditable(false);
+		textField_email.setEnabled(false);
+		textField_email.setColumns(10);
+		textField_email.setBounds(68, 127, 538, 20);
+		panel.add(textField_email);
 		
 		JLabel label_7 = new JLabel("Email");
 		label_7.setBounds(10, 130, 47, 14);
@@ -146,32 +150,52 @@ public class jpClientsRecherche extends JPanel {
 		label_8.setBounds(10, 189, 64, 14);
 		panel.add(label_8);
 		
-		textField_8 = new JTextField();
-		textField_8.setEnabled(false);
-		textField_8.setColumns(10);
-		textField_8.setBounds(68, 165, 538, 63);
-		panel.add(textField_8);
+		textField_remarques = new JTextField();
+		textField_remarques.setEditable(false);
+		textField_remarques.setEnabled(false);
+		textField_remarques.setColumns(10);
+		textField_remarques.setBounds(68, 165, 538, 63);
+		panel.add(textField_remarques);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(173, 216, 230));
+		panel_2.setName("Recherche client");
+		panel_2.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 2), "Recherche client", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
-						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)
+						.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(17)
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 238, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap()
+					.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 238, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
 					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 207, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(178, Short.MAX_VALUE))
+					.addGap(67))
 				.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 		);
+		panel_2.setLayout(null);
+		
+		JLabel lblEntrerLeNom = new JLabel("Entrer le nom du client recherch\u00E9 :");
+		lblEntrerLeNom.setBounds(10, 47, 196, 14);
+		panel_2.add(lblEntrerLeNom);
+		
+		textField_recherchenom = new JTextField();
+		textField_recherchenom.setBorder(new LineBorder(new Color(0, 0, 0)));
+		textField_recherchenom.setBounds(240, 44, 252, 20);
+		panel_2.add(textField_recherchenom);
+		textField_recherchenom.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Rechercher");
 		btnNewButton.setFocusable(false);
@@ -253,7 +277,7 @@ public class jpClientsRecherche extends JPanel {
 					.addContainerGap()
 					.addComponent(btnClients, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(25, Short.MAX_VALUE))
-				.addGroup(gl_panel_1.createSequentialGroup()
+				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
 					.addContainerGap())
@@ -271,22 +295,101 @@ public class jpClientsRecherche extends JPanel {
 					.addComponent(btnImprimer, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnExport)
-					.addGap(46)
+					.addGap(33)
 					.addComponent(btnNewButton_1)
-					.addContainerGap(68, Short.MAX_VALUE))
+					.addContainerGap(81, Short.MAX_VALUE))
 		);
 		panel_1.setLayout(gl_panel_1);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Code", "Nom", "Prénom", "Carte Fidélité", "Date Création"
+		table.setBorder(new LineBorder(new Color(0, 0, 0)));
+		Object[][] tableData = null;
+
+		DefaultTableModel tblModel = new DefaultTableModel(tableData,
+				new String[] { "id", "Code", "Nom", "Prénom", "Carte de fidélité", "Date de création" }) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				// all cells false
+				return false;
 			}
-		));
+		};
+
+		table.getTableHeader().setReorderingAllowed(false);
+		table.setModel(tblModel);
+		table.getColumn("id").setMinWidth(0);
+		table.getColumn("id").setMaxWidth(0);
 		scrollPane.setViewportView(table);
 		setLayout(groupLayout);
+	
+		// -----------------------------------------------------Traitement métier---------------------------------------------------------------
+		
+			// Recherche des clients dans la base
+		
+		
+		ArrayList<Client> list = new ArrayList<Client>();
 
+		list = dao.SelectAllClients();
+		int o = 0;
+		for (Client c : list) {
+
+			tblModel.addRow(tableData);
+			table.setValueAt(c.getIdClient(), o, 0);
+			table.setValueAt(c.getCode(), o, 1);
+			table.setValueAt(c.getNom(), o, 2);
+			table.setValueAt(c.getPrenom(), o, 3);
+			table.setValueAt(c.fidel(), o, 4);
+			table.setValueAt(c.getDate(), o, 5);
+
+			o++;
+
+		}
+		
+		
+
+		textField_recherchenom.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<Client> cli  = dao.SelectAllClientsByName(textField_recherchenom.getText());
+
+				int n = tblModel.getRowCount();
+				for (int i = n - 1; i >= 0; --i)
+					tblModel.removeRow(i);
+				
+				int o = 0;
+				for (Client c : cli) {
+					tblModel.addRow(tableData);
+					table.setValueAt(c.getIdClient(), o, 0);
+					table.setValueAt(c.getCode(), o, 1);
+					table.setValueAt(c.getNom(), o, 2);
+					table.setValueAt(c.getPrenom(), o, 3);
+					table.setValueAt(c.fidel(), o, 4);
+					table.setValueAt(c.getDate(), o, 5);
+
+					o++;
+				}
+			}
+		});
+		
+		// Quand on clique sur une ligne, les TxtField se remplissent
+		
+		
+				table.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+
+						Client cli  = dao.SelectClient(Integer.parseInt(table.getValueAt(table.getSelectedRow(), 0).toString()));
+	
+						textField_code.setText(cli.getCode());
+						textField_date.setText(cli.getDate());
+						textField_nom.setText(cli.getNom());
+						textField_prenom.setText(cli.getPrenom());
+						textField_adresse.setText(cli.getAdresse());
+						textField_telephone.setText(cli.getNumeroTelephone());
+						textField_email.setText(cli.getEmail());
+						textField_remarques.setText(cli.getRemarques());
+						checkBox_cartefidel.setSelected(cli.isCarteFidelite());
+				
+					}
+					});
+		}
 	}
-}
+
