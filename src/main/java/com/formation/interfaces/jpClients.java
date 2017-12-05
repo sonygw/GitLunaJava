@@ -151,7 +151,7 @@ public class jpClients extends JPanel {
 		panel.add(textField_adresse);
 		
 		JLabel lblTlphone = new JLabel("T\u00E9l\u00E9phone");
-		lblTlphone.setBounds(11, 99, 54, 14);
+		lblTlphone.setBounds(11, 99, 64, 14);
 		panel.add(lblTlphone);
 		
 		textField_telephone = new JTextField();
