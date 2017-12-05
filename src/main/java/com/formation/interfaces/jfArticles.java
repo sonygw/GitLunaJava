@@ -251,7 +251,7 @@ public class jfArticles extends JFrame {
 		btnModifier.setBorder(null);
 		btnModifier.setBackground(Color.WHITE);
 		btnModifier.setBounds(144, 141, 123, 64);
-		if(Admin.isAdmin())
+		//if(Admin.isAdmin())
 		panel_1.add(btnModifier);
 
 		JButton btnSupprimer = new JButton("Supprimer");
@@ -266,7 +266,7 @@ public class jfArticles extends JFrame {
 		btnSupprimer.setBorder(null);
 		btnSupprimer.setBackground(Color.WHITE);
 		btnSupprimer.setBounds(279, 141, 123, 64);
-		if(Admin.isAdmin())
+		//if(Admin.isAdmin())
 		panel_1.add(btnSupprimer);
 
 		JButton btnEffacer = new JButton("Effacer");
@@ -364,7 +364,7 @@ public class jfArticles extends JFrame {
 			Article art = null;
 
 			public void actionPerformed(ActionEvent arg0) {
-				if (textFieldCode.isEditable()) {
+				if (textFieldDesign.isEditable()) {
 
 					if (textFieldQte.getText().equals(""))
 						JOptionPane.showMessageDialog(null, "Renseignez une quantité de l'article svp.");
@@ -379,7 +379,6 @@ public class jfArticles extends JFrame {
 						if (dao.CreateArticle(art)) {
 							JOptionPane.showMessageDialog(null, "Article correctement ajouté.");
 							textFieldCategorie.setEditable(false);
-							textFieldCode.setEditable(false);
 							textFieldDesign.setEditable(false);
 							textFieldPrix.setEditable(false);
 							textFieldQte.setEditable(false);
@@ -401,13 +400,13 @@ public class jfArticles extends JFrame {
 				} else {
 
 					textFieldCategorie.setText("");
-					textFieldCode.setText("");
+					textFieldCode.setText("ARTFRA" + dao.SelectLastArticle().getIdArticle());
+					// 
 					textFieldDesign.setText("");
 					textFieldPrix.setText("");
 					textFieldQte.setText("");
 
 					textFieldCategorie.setEditable(true);
-					textFieldCode.setEditable(true);
 					textFieldDesign.setEditable(true);
 					textFieldPrix.setEditable(true);
 					textFieldQte.setEditable(true);
@@ -423,7 +422,7 @@ public class jfArticles extends JFrame {
 		btnModifier.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				if (textFieldCode.isEditable()) {
+				if (textFieldDesign.isEditable()) {
 					Article art = new Article(-1, textFieldCode.getText(), textFieldDesign.getText(),
 							Double.parseDouble(textFieldPrix.getText()), Integer.parseInt(textFieldQte.getText()),
 							textFieldCategorie.getText());
@@ -433,11 +432,12 @@ public class jfArticles extends JFrame {
 						JOptionPane.showMessageDialog(null, "Article correctement modifié.");
 
 						textFieldCategorie.setEditable(false);
-						textFieldCode.setEditable(false);
 						textFieldDesign.setEditable(false);
 						textFieldPrix.setEditable(false);
 						textFieldQte.setEditable(false);
-
+						jfArticles frame = new jfArticles();
+						frame.setVisible(true);
+						dispose();
 					} else {
 						JOptionPane.showMessageDialog(null,
 								"Problème de modification en base. Contactez l'équipe de développement.");
@@ -446,7 +446,6 @@ public class jfArticles extends JFrame {
 				} else {
 
 					textFieldCategorie.setEditable(true);
-					textFieldCode.setEditable(true);
 					textFieldDesign.setEditable(true);
 					textFieldPrix.setEditable(true);
 					textFieldQte.setEditable(true);

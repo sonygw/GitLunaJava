@@ -12,7 +12,7 @@ public interface ArticleDAO {
 	public boolean DeleteArticle(int id);
 	public boolean UpdateArticle(Article obj, int id);
 	public boolean CreateArticle(Article obj);
-	
+	public Article SelectLastArticle();
 	
 	
 }
